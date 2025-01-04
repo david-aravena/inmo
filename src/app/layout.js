@@ -1,3 +1,4 @@
+import Navbar from 'src/components/navbar/'
 import "./globals.css";
 
 export const metadata = {
@@ -8,8 +9,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>
-        {children}
+      <body style={{display: "flex", flexDirection: "column", height: "100vh"}}>
+        <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "lightblue"}}>
+          <Navbar />
+        </div>
+        <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "lightcoral"}}>
+          {children}
+        </div>
       </body>
     </html>
   );
