@@ -1,4 +1,5 @@
 import Navbar from 'src/components/navbar/'
+import ChangeContentBar from 'src/components/changeContentBar'
 import "./globals.css";
 
 export const metadata = {
@@ -15,6 +16,9 @@ export default function RootLayout({ children }) {
         </div>
         <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "lightcoral"}}>
           {children}
+        </div>
+        <div style={{position: "fixed", bottom: "0", display:"flex", justifyContent:"center", margin:"auto", width:"100vw"}}>
+          <ChangeContentBar />
         </div>
       </body>
     </html>
