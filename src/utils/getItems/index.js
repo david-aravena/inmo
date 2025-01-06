@@ -1,6 +1,7 @@
 export const getItems = async () => {
     const properties = [
         {
+          id: 1,
           price: 150000,
           ubication: "Ciudad A, Calle 123",
           type: "casa",
@@ -12,6 +13,7 @@ export const getItems = async () => {
           image: "https://firebasestorage.googleapis.com/v0/b/inmobiliario-e6a3e.appspot.com/o/properties%2Fimage_fx_%20(1).jpg?alt=media&token=54e6fbd2-f87d-4e63-98f4-5e61bc318013"
         },
         {
+          id:2,
           price: 1200,
           ubication: "Ciudad B, Avenida 45",
           type: "departamento",
@@ -23,6 +25,7 @@ export const getItems = async () => {
           image: "https://firebasestorage.googleapis.com/v0/b/inmobiliario-e6a3e.appspot.com/o/properties%2Fimage_fx_%20(2).jpg?alt=media&token=97df605c-8793-4df1-bcff-4475e3f391ec"
         },
         {
+          id:3,
           price: 90000,
           ubication: "Ciudad C, Barrio Central",
           type: "casa",
@@ -34,6 +37,7 @@ export const getItems = async () => {
           image:"https://firebasestorage.googleapis.com/v0/b/inmobiliario-e6a3e.appspot.com/o/properties%2Fimage_fx_%20(3).jpg?alt=media&token=eda4a79f-22ef-4a5b-b8d8-40e4cc5b05a0"
         },
         {
+          id:4,
           price: 800,
           ubication: "Ciudad D, Calle Vista",
           type: "departamento",
@@ -45,6 +49,7 @@ export const getItems = async () => {
           image:"https://firebasestorage.googleapis.com/v0/b/inmobiliario-e6a3e.appspot.com/o/properties%2Fimage_fx_%20(4).jpg?alt=media&token=102e3203-55bb-403f-8cd6-add15011d9c9"
         },
         {
+          id:5,
           price: 200000,
           ubication: "Ciudad E, Zona Residencial",
           type: "casa",

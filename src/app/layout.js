@@ -1,6 +1,25 @@
+import localFont from "next/font/local";
 import Navbar from 'src/components/navbar/'
 import ChangeContentBar from 'src/components/changeContentBar'
 import "./globals.css";
+
+const montserratRegular = localFont({
+  src: './../fonts/Montserrat-Regular.ttf',
+  variable: '--font-montserrat-regular',
+  weight: '400',
+});
+
+const montserratSemiBold = localFont({
+  src: './../fonts/Montserrat-SemiBold.ttf',
+  variable: '--font-montserrat-semi-bold',
+  weight: '600',
+});
+
+const montserratBold = localFont({
+  src: './../fonts/Montserrat-Bold.ttf',
+  variable: '--font-montserrat-bold',
+  weight: '700',
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -10,14 +29,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body style={{display: "flex", flexDirection: "column", height: "100vh"}}>
-        <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "lightblue"}}>
+      <body style={{display: "flex", flexDirection: "column", height: "100vh"}} className={`${montserratRegular.variable} ${montserratSemiBold.variable} ${montserratBold.variable}`}>
+        <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "#343434"}}>
           <Navbar />
         </div>
-        <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "lightcoral"}}>
+        <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "black"}}>
           {children}
         </div>
-        <div style={{position: "fixed", bottom: "0", display:"flex", justifyContent:"center", margin:"auto", width:"100vw"}}>
+        <div style={{position: "fixed", bottom: "0", display:"flex", justifyContent:"center", margin:"auto", width:"100vw", zIndex:"1"}}>
           <ChangeContentBar />
         </div>
       </body>

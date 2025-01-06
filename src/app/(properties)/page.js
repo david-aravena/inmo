@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import {getItems} from 'src/utils/getItems/'
-import CardPropertyUI from 'src/ui/properties/CardPropertyUI'
-import styles from "./page.module.css";
+import Link from "next/link";
+import Image from "next/image";
+import CardPropertyUI from "src/ui/properties/CardPropertyUI";
 
 export default async function Home() {
 
@@ -10,15 +10,18 @@ export default async function Home() {
   return(
     <div style={{display:"flex", flexWrap: 'wrap', justifyContent:"center"}}>
       {properties.map((item, index) => (
-        <CardPropertyUI key={index} item={item} index={index}>
-          <Image
-            src={item.image}
-            alt="error"
-            layout="fill"
-            objectFit="cover"
-          />
-        </CardPropertyUI>
+        <Link href={`/show/${item.id}`} key={index}>
+          <CardPropertyUI item={item} index={index}>
+            <Image
+              src={item.image}
+              alt="error"
+              layout="fill"
+              objectFit="cover"
+            />
+          </CardPropertyUI>
+        </Link>
       ))}
+      
     </div>
   );
 }
