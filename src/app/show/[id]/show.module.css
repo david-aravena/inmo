@@ -20,6 +20,7 @@
 
 .imagesList{
     width: 100%;
+    display: flex;
     overflow: auto;
     background-color: rgb(32, 32, 32);
 }
@@ -48,4 +49,23 @@
     flex: 1; /* Cada botón ocupará la misma proporción del espacio disponible */
     text-align: center; /* Asegura que el texto de los botones esté centrado */
     padding: 10px; /* Opcional: Ajusta el relleno de los botones */
+}
+
+.containerShow{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) { /* Ajusta este tamaño según lo necesites */
+    .containerShow {
+        flex-direction: column;
+    }
+
+    .imagesContainer, .infoContainer{
+        width: 100%;
+        height: 50%;
+    }
   }

@@ -13,15 +13,7 @@ export default async function Show({ params }) {
   );
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <div className={styles.containerShow}>
       <div className={styles.imagesContainer}>
         <ShowImages item={item} styles={styles} />
       </div>
