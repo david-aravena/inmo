@@ -42,14 +42,12 @@
 
 .buttonsContainer{
     width: 100%;
-    background-color: red;
     display: flex;
 }
 
 .buttonsContainer button {
-    flex: 1; /* Cada botón ocupará la misma proporción del espacio disponible */
+    width: 100%;
     text-align: center; /* Asegura que el texto de los botones esté centrado */
-    padding: 10px; /* Opcional: Ajusta el relleno de los botones */
 }
 
 .containerShow{
@@ -61,7 +59,23 @@
 }
 
 .buttonContact{
-    background: "red";
+    background: linear-gradient(to top, rgb(255, 255, 255), rgb(193, 191, 191));
+    border: none;
+    font-size: 1rem;
+    font-family: var(--font-montserrat-semi-bold), sans-serif;
+    font-weight: 600;
+    color: rgb(82, 82, 82);
+}
+
+.buttonBackHome{
+    background: radial-gradient(circle, #c91779, #88024b);
+    background: linear-gradient(to top, #9c1f64, #88024b);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-family: var(--font-montserrat-semi-bold), sans-serif;
+    font-weight: 600;
+
 }
 
 @media (max-width: 768px) { /* Ajusta este tamaño según lo necesites */

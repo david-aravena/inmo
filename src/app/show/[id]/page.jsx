@@ -7,7 +7,6 @@ export default async function Show({ params }) {
   const { id } = await params;
   const item = await getItem(id);
 
-  // Filtrar los atributos que no queremos mostrar
   const filteredAttributes = Object.entries(item).filter(
     ([key]) => key !== 'image' && key !== 'images'
   );
@@ -19,8 +18,8 @@ export default async function Show({ params }) {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.buttonsContainer}>
-          <Link href={"/"} ><button style={{background:"#88024b", border:"none", color:"white"}}>volver al home</button></Link>
-          <button style={{background:"#030e6b", border:"none", color:"white"}}>Contactar corredor</button>
+          <Link href={"/"} ><button className={styles.buttonBackHome}>volver al home</button></Link>
+          <button className={styles.buttonContact}>Contactar corredor</button>
         </div>
         {filteredAttributes.map(([key, value]) => (
           <div key={key} className={styles.itemContainer}>
