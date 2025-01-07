@@ -1,0 +1,51 @@
+.imagesContainer, .infoContainer{
+    width: 50%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+}
+
+.imagesContainer, .infoContainer{
+    padding: 1rem;
+}
+
+.imageSelectedContainer{
+    height: 75%;
+    width: 100%;
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.imagesList{
+    width: 100%;
+    overflow: auto;
+    background-color: rgb(32, 32, 32);
+}
+
+.itemContainer{ 
+    margin-bottom: 10px;
+    background: #1e1e1e;
+    padding: 1rem;
+    opacity: 1;
+}
+
+.infoContainer{
+    font-size: 1rem;
+    font-family: var(--font-montserrat-bold), sans-serif;
+    font-weight: 700;
+    overflow:auto;
+}
+
+.buttonsContainer{
+    width: 100%;
+    background-color: red;
+    display: flex;
+}
+
+.buttonsContainer button {
+    flex: 1; /* Cada botón ocupará la misma proporción del espacio disponible */
+    text-align: center; /* Asegura que el texto de los botones esté centrado */
+    padding: 10px; /* Opcional: Ajusta el relleno de los botones */
+  }
