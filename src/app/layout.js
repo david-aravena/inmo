@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body style={{display: "flex", flexDirection: "column", height: "100vh"}} className={`${montserratRegular.variable} ${montserratSemiBold.variable} ${montserratBold.variable}`}>
-        <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "#343434"}}>
+        <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "#1e1e1e"}}>
           <Navbar />
         </div>
         <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "black"}}>
