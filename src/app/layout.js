@@ -1,6 +1,5 @@
 import localFont from "next/font/local";
 import Navbar from 'src/components/navbar/'
-import ChangeContentBar from 'src/components/changeContentBar'
 import "./globals.css";
 
 const montserratRegular = localFont({
@@ -35,9 +34,6 @@ export default function RootLayout({ children }) {
         </div>
         <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "black"}}>
           {children}
-        </div>
-        <div style={{position: "fixed", bottom: "0", display:"flex", justifyContent:"center", margin:"auto", width:"100vw", zIndex:"1"}}>
-          <ChangeContentBar />
         </div>
       </body>
     </html>

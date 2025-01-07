@@ -1,13 +1,19 @@
 import styles from './cardPropertyUI.module.css'
 
 export default function CardPropertyUI({children, item, index}){
+
+  function capitalizeFirstLetter(string) {
+    if (!string) return ''; // Maneja casos donde el string sea null o undefined
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
   return(
     <div key={index} className={styles.card}>
       <div className={styles.imageContainer} style={{flex: "1 1 auto"}}>
         {children}
       </div>
       <div className={styles.metadata}>
-        <h3>{item.type} en {item.state}</h3>  
+        <h3>{capitalizeFirstLetter(item.type)} en {item.state}</h3>
       </div>
       <div className={styles.icons}>
         <div style={{display:"flex", alignItems:"center"}}>
