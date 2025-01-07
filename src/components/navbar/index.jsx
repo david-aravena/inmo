@@ -7,7 +7,7 @@ export default function Navbar(){
     <nav>
       <div>
         <Link href="/">
-          <Image src="/images/logo.png" width={117} height={117} alt="Error logo" />
+          <Image src="/images/inmobiliarioLogo.png" width={117} height={117} alt="Error logo" />
         </Link>
       </div>
       <div>
