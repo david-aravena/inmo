@@ -19,8 +19,8 @@ export default async function Show({ params }) {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.buttonsContainer}>
-          <Link href={"/"} ><button>volver al home</button></Link>
-          <button>Contactar corredor</button>
+          <Link href={"/"} ><button style={{background:"#88024b", border:"none", color:"white"}}>volver al home</button></Link>
+          <button style={{background:"#0018e4", border:"none", color:"white"}}>Contactar corredor</button>
         </div>
         {filteredAttributes.map(([key, value]) => (
           <div key={key} className={styles.itemContainer}>
