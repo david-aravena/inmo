@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getItem } from 'src/utils/getItems/';
+import FormContact from 'src/components/formContact/'
 import ShowImages from 'src/components/showImages/';
 import styles from './show.module.css';
 
@@ -18,8 +19,9 @@ export default async function Show({ params }) {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.buttonsContainer}>
-          <Link href={"/"} ><button className={styles.buttonBackHome}>volver al home</button></Link>
-          <button className={styles.buttonContact}>Contactar corredor</button>
+          <Link href={"/"} ><button>volver al home</button></Link>
+          <FormContact styles={styles} />
+          
         </div>
         {filteredAttributes.map(([key, value]) => (
           <div key={key} className={styles.itemContainer}>

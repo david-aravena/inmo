@@ -8,3 +8,7 @@ a{
   text-decoration: none;
   color: white;
 }
+
+:root {
+  --input-border: #88024b;
+}

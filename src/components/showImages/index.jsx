@@ -21,8 +21,8 @@ export default function ShowImages({item, styles}){
             />
             </div>
             <div className={styles.imagesList}>
-            {item.images.map((image) => (
-                <Image src={image} alt="" width={100} height={100} style={{margin: "0 8px", objectFit:"cover"}} onClick={() => setImageSelected(image)} />
+            {item.images.map((image, index) => (
+                <Image key={index} src={image} alt="" width={100} height={100} style={{margin: "0 8px", objectFit:"cover"}} onClick={() => setImageSelected(image)} />
             ))}
             </div>
         </>
