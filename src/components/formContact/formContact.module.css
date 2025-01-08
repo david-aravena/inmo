@@ -1,3 +1,17 @@
+.container{
+    background: rgba(34, 34, 34, 0.87); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    padding:"1rem";
+    position: relative;
+    width:50vw;
+}
+
+@media (max-width: 800px) {
+    .container {
+        width:95vw;
+    }
+  }
+
 .titleText{
     color:white; 
     font-size: 1rem;

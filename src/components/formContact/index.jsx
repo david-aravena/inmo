@@ -23,7 +23,7 @@ export default function FormContact({styles}){
                 <div style={{position:"absolute", top:"0", left:"0", width:"100vw", height:"100vh", background:"none", backdropFilter:"blur(10px)", display:"flex", justifyContent:"center", alignItems:"center"}}>
 
                     
-                    <div style={{background:'rgba(34, 34, 34, 0.87)',  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)" , padding:"1rem", position:"relative", width:"50vw"}}>
+                    <div className={styless.container}>
                         <button onClick={() => setIsContact(false)}>Cerrar</button>
                         <div style={{display:"flex", justifyContent:"flex-start", padding:"1rem"}}>
                             <h2 className={styless.titleText}>Ingresa tus datos para contactar al encargado de la propiedad</h2>
@@ -31,7 +31,7 @@ export default function FormContact({styles}){
                         <form onSubmit={getInputsValues}>
                             <div className={styless.inputField}>
                                 <label 
-                                    for="name"
+                                    htmlFor="name"
                                     className={`${animationName.inputFocus ? styless.labelBlur : styless.labelFocus}`}   
                                 >
                                     Nombre
@@ -46,7 +46,7 @@ export default function FormContact({styles}){
                             </div>
                             <div className={styless.inputField}>
                                 <label 
-                                    for="email"
+                                    htmlFor="email"
                                     className={`${animationEmail.inputFocus ? styless.labelBlur : styless.labelFocus}`}   
                                 >
                                     Email
@@ -61,7 +61,7 @@ export default function FormContact({styles}){
                             </div>
                             <div className={styless.inputField}>
                                 <label 
-                                    for="phone"
+                                    htmlFor="phone"
                                     className={`${animationPhone.inputFocus ? styless.labelBlur : styless.labelFocus}`}   
                                 >
                                     Fono
