@@ -12,3 +12,19 @@ a{
 :root {
   --input-border: #88024b;
 }
+
+.buttons{
+  border: 1px solid var(--input-border);
+  color: white;
+  background: radial-gradient(circle, #992264, transparent 150%);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.buttonsHot{
+  border: 1px solid #992222;
+  color: white;
+  background: radial-gradient(circle, #992222, transparent 150%);
+  padding: 8px;
+  border-radius: 8px;
+}

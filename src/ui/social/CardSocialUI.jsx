@@ -12,8 +12,8 @@ export default function CardSocialUI({children, item}){
                     <h3>{item.author}</h3>
                     <p>{item.content}</p>
                     <div style={{display:"flex", justifyContent:"space-between", padding:"8px"}}>
-                        <button className={styles.buttons}>comentarios</button>
-                        <button className={styles.buttons}>me interesa</button>
+                        <button className="buttons">comentarios</button>
+                        <button className="buttons">me interesa</button>
                     </div>
                 </div>
                 
