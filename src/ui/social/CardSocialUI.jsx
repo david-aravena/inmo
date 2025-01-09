@@ -7,7 +7,7 @@ export default function CardSocialUI({ children, item, styles }) {
           <div className={styles.contentContainer}>
             <div style={{ display: "flex" }}>
               <img
-                src="https://media.istockphoto.com/id/1335941248/es/foto/foto-de-un-joven-guapo-de-pie-sobre-un-fondo-gris.jpg?s=612x612&w=0&k=20&c=UK8BGVVCSmHen0sJAgxoZ6sBLrs0ld4TuCwczZZ89AY="
+                src={item.photoAuthor}
                 height="50px"
                 width="50px"
                 style={{ borderRadius: "50%", objectFit: "cover" }}
