@@ -11,12 +11,14 @@ export default function CardSocialUI({children, item}){
                 <div className={styles.contentContainer}>
                     <h3>{item.author}</h3>
                     <p>{item.content}</p>
+                    <div style={{display:"flex", justifyContent:"space-between", padding:"8px"}}>
+                        <button className={styles.buttons}>comentarios</button>
+                        <button className={styles.buttons}>me interesa</button>
+                    </div>
                 </div>
+                
             </div>
-            <div>
-                <button>me interesa</button>
-                <button>comentarios</button>
-            </div>
+            
         </>
     )
 }
