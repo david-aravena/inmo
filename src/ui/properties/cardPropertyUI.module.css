@@ -8,7 +8,7 @@
   flex-direction: column;
   user-select: none; /* Desactiva la selección de texto */
   color: white;
-  margin: 1rem 10px;
+  margin: 8px 8px;
   box-shadow: 0px 8px 8px 0px rgba(30, 30, 30, 0.15);
   position: relative; /* Para controlar los elementos con respecto al contenedor */
   overflow: hidden;  /* Oculta la información que se despliega fuera de la card */
@@ -17,6 +17,7 @@
 @media (max-width: 700px) { /* Ajusta este tamaño según lo necesites */
   .card {
     width: 100vw;
+    margin: 1rem 0;
   }
 }
 
