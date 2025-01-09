@@ -12,16 +12,15 @@ export default async function Social(){
     return(
         <div style={{width:"100%", display:"flex", flexDirection:"column", alignItems:"center"}}>
             {posts.map((item, index) => (
-                <Link href={`/show/${item.id}`} key={index}>
+                <Link href={``} key={index}>
                     <CardSocialUI item={item} index={index} styles={styles}>
-                        <div className={styles.imageContainer}>
-                            <Image
-                                src={item.image}
-                                alt="error"
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                        </div>
+                        <Image
+                            src={item.image}
+                            alt="error"
+                            layout="fill"
+                            style={{objectFit:"cover", height:"100%", width:"100%"}}
+
+                        />
                     </CardSocialUI>
                 </Link>
             ))}
