@@ -1,17 +1,17 @@
 "use client";
 import { useState } from "react";
 
-export default function CardSocialUI({ children, item, styles }) {
-  const [isClick, setIsClick] = useState(false);
+export default function CardSocialUI({ children, item, styles, index }) {
+  const [isSelected, setIsSelected] = useState(false);
 
   const clickCard = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsClick(!isClick);
+    setIsSelected(!isSelected);
   }
 
   return (
-    <div className={styles.card} onClick={(e) => clickCard(e)}>
+    <div className={styles.card} key={index} onClick={(e) => clickCard(e)}>
       <div 
         className={styles.headerCard}
         style={{position:"absolute", top:0, left:0, width:"100%"}} 
@@ -37,6 +37,16 @@ export default function CardSocialUI({ children, item, styles }) {
       >
         <p>{item.content}</p>
       </div>
+
+      {isSelected && (
+        <div
+          style={{position:"absolute", top:0, left:0, width:"100%", height:"100%"}}
+          className={styles.contentContainer} 
+          onClick={(e) => clickCard(e)}
+        >
+          {item.content}
+        </div>
+      )}
     </div>
   );
 }
