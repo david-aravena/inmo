@@ -1,61 +1,42 @@
-"use client"
-export default function CardSocialUI({ children, item, styles }) {
-    return (
-      <>
-        <div className={styles.card}>
-          {/* Contenedor fijado en la parte superior */}
-          <div className={styles.contentContainer}>
-            <div style={{ display: "flex" }}>
-              <img
-                src={item.photoAuthor}
-                height="50px"
-                width="50px"
-                style={{ borderRadius: "50%", objectFit: "cover" }}
-              />
-              <h3>{item.author}</h3>
-            </div>
-            <p>{item.content}</p>
-          </div>
-  
-          {/* Div que ocupa el espacio restante */}
-          <div
-            style={{
-              flex: 1,
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex:100
-            }}
-          >
-            {children}
-          </div>
-  
-          {/* Contenedor fijado en la parte inferior */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              backgroundColor: "#1e1e1e"
+"use client";
+import { useState } from "react";
 
-            }}
-          >
-            <button type="button" className={styles.buttons} onClick={(e) => {
-                e.preventDefault()
-                alert("boton no habilitado")
-            }}>
-                comentarios
-            </button>
-            <button type="button" className={styles.buttons} onClick={(e) => {
-                e.preventDefault()
-                alert("boton no habilitado")
-            }}>me interesa</button>
-          </div>
-        </div>
-      </>
-    );
+export default function CardSocialUI({ children, item, styles }) {
+  const [isClick, setIsClick] = useState(false);
+
+  const clickCard = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsClick(!isClick);
   }
-  
+
+  return (
+    <div className={styles.card} onClick={(e) => clickCard(e)}>
+      <div 
+        className={styles.headerCard}
+        style={{position:"absolute", top:0, left:0, width:"100%"}} 
+      >
+        <div className={styles.authorContainer}>
+          <img
+            src={item.photoAuthor}
+            alt={`Foto de ${item.author}`}
+            height="50"
+            width="50"
+            style={{ borderRadius: "50%", objectFit: "cover" }}
+          />
+          <h3 style={{ marginLeft: "10px", textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)"}}>{item.author}</h3>
+        </div>
+      </div>
+
+      {/* imagen ocupa el tamaño completo de la card */}
+      {children}
+      
+      <div 
+        className={styles.footerCard} 
+        style={{position:"absolute", bottom:0, left:0, width:"100%"}}
+      >
+        <p>{item.content}</p>
+      </div>
+    </div>
+  );
+}
