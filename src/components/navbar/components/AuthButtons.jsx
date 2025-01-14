@@ -4,13 +4,21 @@ import Link from 'next/link'
 import { useAuth } from "src/context/auth"
 
 export default function AuthButtons(){
-    const auth = useAuth();
-    const pathname = usePathname()
+    const auth = useAuth().currentUser;
+    const pathname = usePathname();
 
     if(pathname === "/autenticacion"){
         return(
-          <>
-          </>
+            <>
+            </>
+        )
+    }
+
+    if(auth?.name){
+        return(
+            <div>
+                <p style={{color:"white"}}>{auth.name}</p>
+            </div>
         )
       }
 

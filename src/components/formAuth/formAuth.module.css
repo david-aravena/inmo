@@ -1,0 +1,88 @@
+.container{
+    background: rgba(34, 34, 34, 0.87); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    padding:"1rem";
+    position: relative;
+    width:50vw;
+}
+
+@media (max-width: 800px) {
+    .container {
+        width:95vw;
+    }
+  }
+
+.titleText{
+    color:white; 
+    font-size: 1rem;
+    font-family: var(--font-montserrat-regular), sans-serif;
+    font-weight: 400;
+}
+
+.inputField{
+    position: relative;
+    margin: 1rem;
+}
+
+.labelFocus{
+    position: absolute;
+    left: 10px;
+    transition: all 0.2s;
+    padding: 0 2px;
+    z-index: 100;
+    font-family: Helvetica;
+    font-weight: bold;
+    top: 1rem;
+    color: white;
+    font-size: 16px;
+    opacity: 1;
+    animation-fill-mode: forwards;
+}
+
+.labelBlur{
+    position: absolute;
+    left: 10px;
+    transition: all 0.2s;
+    padding: 0 2px;
+    z-index: 100;
+    font-family: Helvetica;
+    font-weight: bold;
+    top: -12px;
+    color: var(--input-border);
+    font-size: 14px;
+    opacity: 1;
+    animation-fill-mode: forwards;
+}
+
+.textInput{
+    padding: 0.8rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.3s;
+    color: rgb(255, 255, 255);
+    background-color: #101010;
+    z-index: 100;
+    border: none;
+    font-size: 1rem;
+    font-family: var(--font-montserrat-bold), sans-serif;
+    font-weight: 700;
+}
+
+.textInputBlur{
+    border: 1px solid #88024b;
+}
+
+.textInput:focus{
+    border: 2px solid var(--input-border);
+    z-index: 900;
+}
+
+.textInput:focus + .label, .label:focus{
+    top: -10px;
+    font-size: 24px;
+    color: blue;
+    z-index: 900;
+}
