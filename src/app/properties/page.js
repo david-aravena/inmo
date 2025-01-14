@@ -9,7 +9,7 @@ export default async function Home() {
   const properties = await getItems("properties")
 
   return(
-    <div style={{display:"flex", flexWrap: 'wrap', justifyContent:"center", paddingBottom:"3rem"}}>
+    <div style={{display:"flex", flexWrap: 'wrap', justifyContent:"center", marginBottom:"3rem"}}>
       {properties.map((item, index) => (
         <Link href={`/show/${item.id}`} key={index}>
           <CardPropertyUI item={item} index={index}>
