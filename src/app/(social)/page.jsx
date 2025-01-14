@@ -9,7 +9,7 @@ export default async function Social(){
     const posts = await getSocialPosts()
 
     return(
-        <div style={{width:"100%", display:"flex", flexDirection:"column", alignItems:"center", marginBottom:"3rem"}}>
+        <div style={{width:"100%", display:"flex", flexDirection:"column", alignItems:"center", paddingBottom:"3rem"}}>
             {posts.map((item) => (
                 <CardSocialUI item={item} index={item.id} styles={styles}>
                     <Image
