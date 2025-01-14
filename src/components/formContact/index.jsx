@@ -92,7 +92,7 @@ export default function FormContact(){
                 </div>
                 </>
             :
-            <button onClick={() => setIsContact(true)} className="buttonsHot" style={{borderRadius:"0"}}>Contactar corredor</button>
+            <button onClick={() => setIsContact(true)} className="buttonsHot" style={{borderRadius:"0 8px 8px 0"}}>Contactar corredor</button>
                 
             }
         </>

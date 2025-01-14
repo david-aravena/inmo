@@ -19,7 +19,7 @@ export default async function Show({ params }) {
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.buttonsContainer}>
-          <Link href={"/properties"} ><button className="buttons" style={{borderRadius:"0"}}>volver al home</button></Link>
+          <Link href={"/properties"} ><button className="buttons" style={{borderRadius:"8px 0 0 8px"}}>volver al home</button></Link>
           <FormContact styles={styles} />
           
         </div>

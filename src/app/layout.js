@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
         <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "black"}}>
           {children}
         </div>
-        <div style={{position:"absolute", bottom:0, zIndex:"1", display:"flex", justifyContent:"center", width:"100vw"}}>
+        <div className="changeContentBarContainer">
           <ChangeContentBar />
         </div>
       </body>
