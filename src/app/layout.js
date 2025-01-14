@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
-import Navbar from 'src/components/navbar/'
+import Navbar from 'src/components/navbar/';
 import ChangeContentBar from 'src/components/changeContentBar/'
+import {AuthProvider} from 'src/context/auth'
 import "./globals.css";
 
 const montserratRegular = localFont({
@@ -30,15 +31,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body style={{display: "flex", flexDirection: "column", height: "100vh", background:"black"}} className={`${montserratRegular.variable} ${montserratSemiBold.variable} ${montserratBold.variable}`}>
-        <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "#1e1e1e"}}>
-          <Navbar />
-        </div>
-        <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "black"}} className="bodyContent">
-          {children}
-        </div>
-        <div className="changeContentBarContainer">
-          <ChangeContentBar />
-        </div>
+        <AuthProvider>
+          <div style={{width: "100vw", flex: "0 0 auto", backgroundColor: "#1e1e1e"}}>
+            <Navbar />
+          </div>
+          <div style={{width: "100vw", flex: "1 1 auto", overflowY: "auto", backgroundColor: "black"}} className="bodyContent">
+            {children}
+          </div>
+          <div className="changeContentBarContainer">
+            <ChangeContentBar />
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
