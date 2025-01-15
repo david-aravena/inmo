@@ -33,11 +33,11 @@ a{
 .changeContentBarContainer{
   position: absolute; 
   left: 0;
+  top: 50%;
   z-index: 5; 
   display: flex;
   flex-direction: column; 
-  justify-content: center; 
-  height: 100vh;
+  justify-content: center;
 }
 
 .changeContentBar{
@@ -51,7 +51,7 @@ a{
 }
 
 .bodyContent{
-   margin-bottom: 0;
+  padding-bottom: 100px;
 }
 
 .textMonserratRegular{
@@ -62,14 +62,17 @@ a{
 }
 
 @media (max-width: 700px) {
-  .changeContentBarContainer{
-    bottom:0;
+
+  .changeContentBarContainer {
+    top: auto;
+    bottom: 0;
+    left: 0;
     width: 100vw;
     height: auto;
   }
 
   .changeContentBar{
-    height: 100%;
+    bottom:0;
     flex-direction: row;
     border-radius: 0;
   }

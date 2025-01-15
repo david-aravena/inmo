@@ -1,5 +1,6 @@
 import Image from "next/image";
 import CardSocialUI from "src/ui/social/CardSocialUI"
+import ChangeContentBar from 'src/components/changeContentBar/'
 import {getSocialPosts} from 'src/utils/social/'
 import styles from './socialUI.module.css'
 
@@ -21,6 +22,9 @@ export default async function Social(){
                     />
                 </CardSocialUI>
             ))}
+            <div className="changeContentBarContainer">
+                <ChangeContentBar />
+            </div>
         </div>
     )
 }

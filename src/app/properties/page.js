@@ -2,6 +2,7 @@ import {getItems} from 'src/utils/getItems/'
 import Link from "next/link";
 import Image from "next/image";
 import CardPropertyUI from "src/ui/properties/CardPropertyUI";
+import ChangeContentBar from 'src/components/changeContentBar/'
 import styles from './page.module.css'
 
 export default async function Home() {
@@ -22,7 +23,9 @@ export default async function Home() {
           </CardPropertyUI>
         </Link>
       ))}
-      
+      <div className="changeContentBarContainer">
+        <ChangeContentBar />
+      </div>
     </div>
   );
 }
