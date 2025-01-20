@@ -8,7 +8,7 @@ import styles from './socialUI.module.css'
 
 export default async function Social(){
 
-    const posts = await getSocialPosts()
+    const posts = await getSocialPosts();
 
     return(
         <>
