@@ -5,10 +5,13 @@ import Search from 'src/components/searchItems/'
 import {getSocialPosts} from 'src/utils/social/'
 import styles from './socialUI.module.css'
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default async function Social(){
 
+    await delay(2000);
     const posts = await getSocialPosts();
+
 
     return(
         <>

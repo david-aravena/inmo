@@ -106,8 +106,6 @@ a{
   }
 }
 
-
-
 .loading {
   width: 250px;
   height: 250px;
@@ -120,15 +118,11 @@ a{
   left: 50%;
   transform: translate(-50%, -50%);
   animation: slide 2s steps(30) infinite;
-  animation-fill-mode: both;
 }
 
 @keyframes slide {
   0% {
     background-position: 0 0;
-  }
-  50% {
-    background-position: 0 -7500px;
   }
   100% {
     background-position: 0 -7500px;

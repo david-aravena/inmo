@@ -5,8 +5,11 @@ import CardPropertyUI from "src/ui/properties/CardPropertyUI";
 import ChangeContentBar from 'src/components/changeContentBar/'
 import styles from './page.module.css'
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default async function Home() {
 
+  await delay(2000);
   const properties = await getItems("properties")
 
   return(
