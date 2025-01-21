@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import CardSocialUI from "src/ui/social/CardSocialUI"
 import ChangeContentBar from 'src/components/changeContentBar/'
 import Search from 'src/components/searchItems/'
@@ -15,10 +16,13 @@ export default async function Social(){
 
     return(
         <>
-            <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", alignItems:"center"}}>
-                <div className="searchContainer" style={{width: "fit-content"}}>
+            
+            <div className="searchContainer">
+                <Link href={`/search`}>
                     <Search />
-                </div>
+                </Link>
+            </div>
+            <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", alignItems:"center", height:"auto"}}>
                 {posts.map((item) => (
                     <CardSocialUI item={item} index={item.id} styles={styles}>
                         <Image

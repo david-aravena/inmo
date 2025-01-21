@@ -87,15 +87,17 @@ a{
 
 .searchContainer{
   position: sticky;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   top:0;
-  left: 50%;
-  transform: translateX(210px);
   z-index: 6;
 }
 
 @media (max-width: 700px) {
   .searchContainer {
     position: fixed;
+    width: fit-content;
     top: auto;  
     left: auto;    
     bottom: 0;  

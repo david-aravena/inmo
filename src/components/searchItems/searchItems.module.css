@@ -1,0 +1,15 @@
+.searchIconContainer{
+    display: flex; 
+    font-size:1rem; 
+    background-color: #3980ff;
+    padding:8px;
+    border-radius:10rem;
+    width:fit-content; 
+    transform: translateX(230px)
+}
+
+@media (max-width: 700px) {
+    .searchIconContainer{ 
+        transform: none;
+    }
+  }
