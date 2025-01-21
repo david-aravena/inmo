@@ -1,8 +1,7 @@
-import ChangeContentBar from 'src/components/changeContentBar/'
+import ChangeContentBar from "src/components/changeContentBar/"
 
-export default function Profile(){
+export default function Projects(){
 
-    
     const icons = [
         {
             url: "/proyectos",
@@ -16,10 +15,11 @@ export default function Profile(){
 
     return(
         <>
-            <h2 style={{color:"white"}}>Perfil de usuario: </h2>
+            <h2 style={{color:"white"}}>Gestion de proyectos</h2>
             <div className="changeContentBarContainer">
                 <ChangeContentBar icons={icons} />
             </div>
         </>
     )
 }
+

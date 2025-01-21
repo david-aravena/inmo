@@ -10,6 +10,21 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default async function Home() {
 
+  const icons = [
+    {
+        url: "/",
+        svg: "/svg/users.svg"
+    },
+    {
+        url: "/properties",
+        svg: "/svg/realstate.svg"
+    },
+    {
+        url: "/info",
+        svg: "/svg/info.svg"
+    }
+]
+
   await delay(2000);
   const properties = await getItems("properties")
 
@@ -35,7 +50,7 @@ export default async function Home() {
           </Link>
         ))}
         <div className="changeContentBarContainer">
-          <ChangeContentBar />
+          <ChangeContentBar icons={icons} />
         </div>
       </div>
     </>

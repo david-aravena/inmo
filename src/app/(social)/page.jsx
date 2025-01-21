@@ -10,6 +10,21 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default async function Social(){
 
+    const icons = [
+        {
+            url: "/",
+            svg: "/svg/users.svg"
+        },
+        {
+            url: "/properties",
+            svg: "/svg/realstate.svg"
+        },
+        {
+            url: "/info",
+            svg: "/svg/info.svg"
+        }
+    ]
+
     await delay(2000);
     const posts = await getSocialPosts();
 
@@ -36,7 +51,7 @@ export default async function Social(){
                 ))}
             </div>
             <div className="changeContentBarContainer">
-                <ChangeContentBar />
+                <ChangeContentBar icons={icons} />
             </div>
         </>
     )
