@@ -1,11 +1,18 @@
 "use client"
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
 import Link from 'next/link'
 import { useAuth } from "src/context/auth"
 
 export default function AuthButtons(){
-    const auth = useAuth().currentUser;
+    const {currentUser, setCurrentUser} = useAuth();
     const pathname = usePathname();
+    const router = useRouter();
+
+    const handleLogout = () => {
+        sessionStorage.removeItem("token");
+        setCurrentUser(null);
+        router.push("/");
+    };
 
     if(pathname === "/autenticacion"){
         return(
@@ -14,10 +21,12 @@ export default function AuthButtons(){
         )
     }
 
-    if(auth?.name){
+    if(currentUser?.name){
         return(
-            <div>
-                <p style={{color:"white"}}>{auth.name}</p>
+            <div style={{backgroundColor:"#3980ff", padding:"1rem", color:"white", borderRadius:"8px"}}>
+                <button className="textMonserratRegular" onClick={handleLogout} style={{background:"none", border:"none"}}>
+                    Cerrar sesión
+                </button>
             </div>
         )
       }

@@ -38,8 +38,8 @@ export default async function Social(){
                 </Link>
             </div>
             <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", alignItems:"center", height:"auto"}}>
-                {posts.map((item) => (
-                    <CardSocialUI item={item} index={item.id} styles={styles}>
+                {posts.map((item, index) => (
+                    <CardSocialUI item={item} index={index} styles={styles}>
                         <Image
                             src={item.image}
                             alt="error"

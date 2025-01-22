@@ -15,7 +15,7 @@ export default function ChangeContentBar({icons}) {
   return (
     <div className="changeContentBar">
         {icons.map((icon, index) => (
-            <Link href={`${icon.url}`}>
+            <Link key={index} href={`${icon.url}`}>
                 <img
                 src={icon.svg}
                 width={40}
