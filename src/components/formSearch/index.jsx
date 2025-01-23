@@ -1,5 +1,9 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Link from "next/link";
+import Image from "next/image";
+import CardPropertyUI from "src/ui/properties/CardPropertyUI";
+import {get} from './utils/getItems'
 import AnimatedInput from 'src/components/animatedInput/'
 import styles from './formSearch.module.css'
 
@@ -7,6 +11,7 @@ import styles from './formSearch.module.css'
 export default function FormSearch({buttons}){
   const [typeSelected, setTypeSelected] = useState("Propiedades");
   const [inputValues, setInputValues] = useState({});
+  const [items, setItems] = useState(null)
 
   const selectedButton = buttons.find(button => button.value === typeSelected);
 
@@ -17,6 +22,10 @@ export default function FormSearch({buttons}){
     }));
   };
 
+  useEffect(() => {
+    get().then((result) => setItems(result));
+  }, [])
+
   return(
     <div className={styles.container}>
       
@@ -24,18 +33,19 @@ export default function FormSearch({buttons}){
       <div className={styles.formContainer}>
         
         <div className={styles.attributesContainer}>
-        <div className={styles.typeButtons}>
-          {buttons.map((button) => (
-            <button style={{ padding: "1rem", background:`${typeSelected === button.value ? "#992264" : "none"}`, color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
-              {button.value}
-            </button>
-          ))}
-        </div>
+          <div className={styles.typeButtons}>
+            {buttons.map((button, index) => (
+              <button key={index} style={{ padding: "1rem", background:`${typeSelected === button.value ? "#992264" : "none"}`, color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
+                {button.value}
+              </button>
+            ))}
+          </div>
           {selectedButton && (
             <div>
               <div style={{display:"flex", flexDirection:"column"}}>
                   {selectedButton.attributes.map((attribute, index) => (
-                    <AnimatedInput 
+                    <AnimatedInput
+                      index={index} 
                       nameInput={attribute.name} 
                       textInput={attribute.text} 
                       value={inputValues[attribute.name] || ""}
@@ -47,10 +57,24 @@ export default function FormSearch({buttons}){
           )}
         </div>
         
-        <div style={{width:"100%", display:"flex", flexDirection:"column", position:"relative"}}>
+        <div style={{width:"100%", display:"flex"}}>
           
           <div className={styles.resultContainer}>
             
+            {items && (
+              items.map((item, index) => (
+                <Link href={`/show/${item.id}`} key={index}>
+                  <CardPropertyUI item={item} index={index}>
+                    <Image
+                      src={item.image}
+                      alt="error"
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </CardPropertyUI>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </div>

@@ -19,6 +19,8 @@
 
 .resultContainer{
   width:100%;
+  display: flex;
+  overflow: auto;
 }
 
 .attributesContainer{

@@ -31,7 +31,7 @@ export default async function Home() {
   return(
     <>
       <div className="searchContainer">
-        <Link href={`/search`}>
+        <Link href={`/buscador`}>
             <Search />
         </Link>
       </div>

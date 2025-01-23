@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAnimationInput } from "src/hooks/animationInput/useAnimationInput"
 import styles from './animatedInput.module.css'
 
-export default function AnimatedInput({nameInput, textInput, value, onChange}){
+export default function AnimatedInput({nameInput, textInput, value, onChange, index}){
     const animationInput = useAnimationInput();
 
     const handleChange = (e) => {
@@ -12,7 +12,7 @@ export default function AnimatedInput({nameInput, textInput, value, onChange}){
       };
 
     return(
-        <div className={styles.inputField}>
+        <div key={index} className={styles.inputField}>
             <label 
                 htmlFor={`${nameInput}`}
                 className={`${animationInput.inputFocus ? styles.labelBlur : styles.labelFocus}`}   
