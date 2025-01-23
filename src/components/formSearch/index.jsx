@@ -19,16 +19,18 @@ export default function FormSearch({buttons}){
 
   return(
     <div className={styles.container}>
-      <div className={styles.typeButtons}>
-        {buttons.map((button) => (
-          <button style={{ padding: "1rem", background:"none", color:"white", border:"none" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
-            {button.value}
-          </button>
-        ))}
-      </div>
+      
 
       <div className={styles.formContainer}>
+        
         <div className={styles.attributesContainer}>
+        <div className={styles.typeButtons}>
+          {buttons.map((button) => (
+            <button style={{ padding: "1rem", background:`${typeSelected === button.value ? "#992264" : "none"}`, color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
+              {button.value}
+            </button>
+          ))}
+        </div>
           {selectedButton && (
             <div>
               <div style={{display:"flex", flexDirection:"column"}}>
@@ -44,9 +46,12 @@ export default function FormSearch({buttons}){
             </div>
           )}
         </div>
-
-        <div className={styles.resultContainer}>
+        
+        <div style={{width:"100%", display:"flex", flexDirection:"column", position:"relative"}}>
           
+          <div className={styles.resultContainer}>
+            
+          </div>
         </div>
       </div>
     </div>
