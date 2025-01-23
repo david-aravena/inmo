@@ -5,7 +5,7 @@ import styles from './formSearch.module.css'
 
 
 export default function FormSearch({buttons}){
-  const [typeSelected, setTypeSelected] = useState(null);
+  const [typeSelected, setTypeSelected] = useState("Propiedades");
   const [inputValues, setInputValues] = useState({});
 
   const selectedButton = buttons.find(button => button.value === typeSelected);
@@ -19,19 +19,18 @@ export default function FormSearch({buttons}){
 
   return(
     <div className={styles.container}>
-      <div className={styles.dashboardContainer}>
-        <div className={styles.typeButtons}>
-          {buttons.map((button) => (
-            <button style={{ padding: "1rem" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
-              {button.value}
-            </button>
-          ))}
-        </div>
+      <div className={styles.typeButtons}>
+        {buttons.map((button) => (
+          <button style={{ padding: "1rem", background:"none", color:"white", border:"none" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
+            {button.value}
+          </button>
+        ))}
+      </div>
 
+      <div className={styles.formContainer}>
         <div className={styles.attributesContainer}>
           {selectedButton && (
             <div>
-              <h3 style={{color:"white"}}>Buscar por: </h3>
               <div style={{display:"flex", flexDirection:"column"}}>
                   {selectedButton.attributes.map((attribute, index) => (
                     <AnimatedInput 
@@ -45,10 +44,10 @@ export default function FormSearch({buttons}){
             </div>
           )}
         </div>
-      </div>
 
-      <div className={styles.resultContainer}>
-        
+        <div className={styles.resultContainer}>
+          
+        </div>
       </div>
     </div>
   )
