@@ -33,7 +33,7 @@ export default async function Social(){
         <>
             
             <div className="searchContainer">
-                <Link href={`/search`}>
+                <Link href={`/buscador`}>
                     <Search />
                 </Link>
             </div>
