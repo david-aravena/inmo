@@ -1,6 +1,8 @@
 "use client"
 import { useState } from "react"
 import AnimatedInput from 'src/components/animatedInput/'
+import styles from './formSearch.module.css'
+
 
 export default function FormSearch({buttons}){
   const [typeSelected, setTypeSelected] = useState(null);
@@ -16,9 +18,9 @@ export default function FormSearch({buttons}){
   };
 
   return(
-    <div style={{width:"100%", height:"100%", display:"flex"}}>
-      <div style={{width:"15%", height:"100%", backgroundColor:"var(--background-gray)"}}>
-        <div style={{width:"100%", height:"auto", display:"flex", flexDirection:"column"}}>
+    <div className={styles.container}>
+      <div className={styles.dashboardContainer}>
+        <div className={styles.typeButtons}>
           {buttons.map((button) => (
             <button style={{ padding: "1rem" }} onClick={(e) => setTypeSelected(e.target.innerText)}>
               {button.value}
@@ -26,26 +28,26 @@ export default function FormSearch({buttons}){
           ))}
         </div>
 
-        <div style={{width:"100%", height:"50%"}}>
-        {selectedButton && (
-          <div>
-            <h3 style={{color:"white"}}>Buscar por: </h3>
-            <div style={{display:"flex", flexDirection:"column"}}>
-                {selectedButton.attributes.map((attribute, index) => (
-                  <AnimatedInput 
-                    nameInput={attribute.name} 
-                    textInput={attribute.text} 
-                    value={inputValues[attribute.name] || ""}
-                    onChange={(newValue) => handleInputChange(attribute.name, newValue)}
-                  />
-                ))}
+        <div className={styles.attributesContainer}>
+          {selectedButton && (
+            <div>
+              <h3 style={{color:"white"}}>Buscar por: </h3>
+              <div style={{display:"flex", flexDirection:"column"}}>
+                  {selectedButton.attributes.map((attribute, index) => (
+                    <AnimatedInput 
+                      nameInput={attribute.name} 
+                      textInput={attribute.text} 
+                      value={inputValues[attribute.name] || ""}
+                      onChange={(newValue) => handleInputChange(attribute.name, newValue)}
+                    />
+                  ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
 
-      <div style={{width:"85%", height:"100%"}}>
+      <div className={styles.resultContainer}>
         
       </div>
     </div>
