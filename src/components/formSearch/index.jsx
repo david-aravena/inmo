@@ -51,7 +51,7 @@ export default function FormSearch({buttons}){
             ))}
           </div>
           {selectedButton && (
-            <div>
+            <div style={{paddingBottom:"1rem"}}>
               <div style={{display:"flex", flexDirection:"column"}}>
                   {selectedButton.attributes.map((attribute, index) => (
                     <AnimatedInput
