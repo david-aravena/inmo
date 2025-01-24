@@ -41,7 +41,7 @@ export default function CardSocialUI({ children, item, index }) {
 
       {isSelected && (
         <div
-          style={{position:"absolute", top:0, left:0, width:"100%", height:"100%"}}
+          style={{position:"absolute", bottom:0, left:0, width:"100%", height:"auto"}}
           className={styles.contentContainer} 
           onClick={(e) => clickCard(e)}
         >
