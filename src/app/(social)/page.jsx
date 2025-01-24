@@ -38,15 +38,17 @@ export default async function Social(){
             </div>
             <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", alignItems:"center", height:"auto"}}>
                 {posts.map((item, index) => (
-                    <CardSocialUI item={item} index={index}>
-                        <Image
-                            src={item.image}
-                            alt="error"
-                            layout="fill"
-                            style={{objectFit:"cover", height:"100%", width:"100%"}}
+                    <Link href={`/user/${item.author}`} key={index}>
+                        <CardSocialUI item={item} index={index}>
+                            <Image
+                                src={item.image}
+                                alt="error"
+                                layout="fill"
+                                style={{objectFit:"cover", height:"100%", width:"100%"}}
 
-                        />
-                    </CardSocialUI>
+                            />
+                        </CardSocialUI>
+                    </Link>
                 ))}
             </div>
             <div className="changeContentBarContainer">

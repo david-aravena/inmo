@@ -12,7 +12,7 @@ export default function CardSocialUI({ children, item, index }) {
   }
 
   return (
-    <div className={styles.card} key={index} onClick={(e) => clickCard(e)}>
+    <div className={styles.card} key={index}>
       <div 
         className={styles.headerCard}
         style={{position:"absolute", top:0, left:0, width:"100%"}} 
@@ -35,6 +35,7 @@ export default function CardSocialUI({ children, item, index }) {
       <div 
         className={styles.footerCard} 
         style={{position:"absolute", bottom:0, left:0, width:"100%"}}
+        onClick={(e) => clickCard(e)}
       >
         <p>{item.content}</p>
       </div>
