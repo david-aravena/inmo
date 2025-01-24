@@ -5,28 +5,28 @@ export default function Search(){
         { 
             value: "Propiedades", 
             attributes: [
-                {text:"dormitorios", name:"roomsNumber"},
-                {text: "baños", name:"bathroomsNumber"}, 
-                {text: "estacionamientos", name:"parking"}, 
-                {text: "mts", name:"mts"}, 
-                {text: "direccion", name:"address"}
+                {text:"Dormitorios", name:"roomsNumber"},
+                {text: "Baños", name:"bathroomsNumber"}, 
+                {text: "Estacionamientos", name:"parking"}, 
+                {text: "Mts", name:"mts"}, 
+                {text: "Direccion", name:"address"}
             ] 
         },
         { 
             value: "Publicaciones", 
             attributes: [
-                {text:"tema", name:"theme"},
-                {text: "tipo", name:"type"}
+                {text:"Tema", name:"theme"},
+                {text: "Tipo", name:"type"}
             ] 
         },
         { 
             value: "Usuarios", 
             attributes: [
-                {text:"nombre", name:"name"},
-                {text: "autor", name:"author"}, 
-                {text: "ciudad", name:"city"},
-                {text: "rubro", name:"heading"},
-                {text: "edad", name:"age"}
+                {text:"Nombre", name:"name"},
+                {text: "Autor", name:"author"}, 
+                {text: "Ciudad", name:"city"},
+                {text: "Rubro", name:"heading"},
+                {text: "Edad", name:"age"}
             ] 
         }
       ]
