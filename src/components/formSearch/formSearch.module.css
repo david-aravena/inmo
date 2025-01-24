@@ -36,6 +36,11 @@
   height:100%;
 }
 
+.contais{
+  width:80%; 
+  display:flex
+}
+
 @media (max-width: 700px) {
   .attributesContainer{
     width:100%;
@@ -46,11 +51,19 @@
     flex-direction: column;
   }
 
+  .contais{
+    width:100%; 
+  }
+
   .formContainer{
     flex-direction: column;
   }
 
   .typeButtons{
     flex-direction: row;
+  }
+
+  .resultContainer{
+    flex-direction: column;
   }
 }

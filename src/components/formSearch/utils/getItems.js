@@ -1,6 +1,13 @@
 import {getItems} from 'src/utils/getItems/'
+import {getSocialPosts} from 'src/utils/social/'
 
 export const get = async() => {
-    const items = await getItems("properties");
-    return items
+    const [items, socialPosts] = await Promise.all([
+        getItems("properties"),
+        getSocialPosts()
+    ]);
+    return {
+        items,
+        socialPosts
+    };
 }

@@ -7,7 +7,7 @@ export default function Search(){
             attributes: [
                 {text:"dormitorios", name:"roomsNumber"},
                 {text: "baños", name:"bathroomsNumber"}, 
-                {text: "estacionamiento", name:"parking"}, 
+                {text: "estacionamientos", name:"parking"}, 
                 {text: "mts", name:"mts"}, 
                 {text: "direccion", name:"address"}
             ] 
@@ -16,8 +16,7 @@ export default function Search(){
             value: "Publicaciones", 
             attributes: [
                 {text:"tema", name:"theme"},
-                {text: "tipo", name:"type"}, 
-                {text: "multimedia", name:"multimedia"}
+                {text: "tipo", name:"type"}
             ] 
         },
         { 

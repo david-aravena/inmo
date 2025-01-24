@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link";
 import Image from "next/image";
 import CardPropertyUI from "src/ui/properties/CardPropertyUI";
+import CardSocialUI from "src/ui/social/CardSocialUI"
 import {get} from './utils/getItems'
 import AnimatedInput from 'src/components/animatedInput/'
 import styles from './formSearch.module.css'
@@ -57,12 +58,11 @@ export default function FormSearch({buttons}){
           )}
         </div>
         
-        <div style={{width:"100%", display:"flex"}}>
+        <div className={styles.contais}>
           
           <div className={styles.resultContainer}>
-            
-            {items && (
-              items.map((item, index) => (
+            {items && typeSelected === "Propiedades" && (
+              items.items.map((item, index) => (
                 <Link href={`/show/${item.id}`} key={index}>
                   <CardPropertyUI item={item} index={index}>
                     <Image
@@ -75,7 +75,23 @@ export default function FormSearch({buttons}){
                 </Link>
               ))
             )}
+
+            {items && typeSelected === "Publicaciones" && (
+              items.socialPosts.map((item, index) => (
+                <Link href={``} key={index}>
+                  <CardSocialUI item={item} index={index}>
+                    <Image
+                        src={item.image}
+                        alt="error"
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                  </CardSocialUI>
+                </Link>
+              ))
+            )}
           </div>
+
         </div>
       </div>
     </div>

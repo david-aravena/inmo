@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import styles from './cardSocialUI.module.css'
 
-export default function CardSocialUI({ children, item, styles, index }) {
+export default function CardSocialUI({ children, item, index }) {
   const [isSelected, setIsSelected] = useState(false);
 
   const clickCard = (e) => {
