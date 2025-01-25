@@ -45,7 +45,6 @@ export default async function Social(){
                                 alt="error"
                                 layout="fill"
                                 style={{objectFit:"cover", height:"100%", width:"100%"}}
-
                             />
                         </CardSocialUI>
                     </Link>

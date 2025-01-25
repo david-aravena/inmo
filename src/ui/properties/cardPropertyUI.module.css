@@ -17,7 +17,7 @@
 @media (max-width: 700px) { /* Ajusta este tamaño según lo necesites */
   .card {
     width: 100vw;
-    margin: 1rem 0;
+    margin: 8px 0;
     border-radius: 0;
   }
 }
