@@ -36,7 +36,7 @@ export default async function Home() {
         </Link>
       </div>
 
-      <div style={{display:"flex", flexWrap: 'wrap', justifyContent:"center"}}>
+      <div style={{padding:"0 6rem", display:"flex", flexWrap: 'wrap', justifyContent:"center"}}>
         {properties.map((item, index) => (
           <Link href={`/show/${item.id}`} key={index}>
             <CardPropertyUI item={item} index={index}>
