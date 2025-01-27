@@ -25,7 +25,7 @@ export default function FormContact(){
                     
                     <div className={styles.container}>
                         <div>
-                            <button onClick={() => setIsContact(false)} className={`buttons`}>Cerrar</button>
+                            <button onClick={() => setIsContact(false)} className={`buttons`} style={{borderRadius:"0"}}>Cerrar</button>
                         </div>
                         <div style={{display:"flex", justifyContent:"flex-start", padding:"1rem"}}>
                             <h2 className={styles.titleText}>Ingresa tus datos para contactar al encargado de la propiedad</h2>
@@ -85,7 +85,7 @@ export default function FormContact(){
                                 />
                             </div>
                             <div className={styles.inputField} style={{display:"flex", justifyContent:"flex-end"}}>
-                                <input type="submit" value={"enviar"} style={{padding:"8px"}} className="buttonsHot"/>
+                                <input type="submit" value={"Enviar"} style={{padding:"8px"}} className="buttonsHot"/>
                             </div>
                         </form>
                     </div>

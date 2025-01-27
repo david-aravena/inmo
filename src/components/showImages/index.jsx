@@ -8,17 +8,17 @@ export default function ShowImages({item, styles}){
     return(
         <>
             <div className={styles.imageSelectedContainer}>
-            <Image
-                src={imageSelected}
-                alt="error"
-                objectFit="cover"
-                width={500}
-                height={500}
-                style={{
-                width: '100%',
-                height: 'auto',
-                }}
-            />
+                <Image
+                    src={imageSelected}
+                    alt="error"
+                    objectFit="cover"
+                    width={500}
+                    height={500}
+                    style={{
+                    width: '100%',
+                    height: 'auto',
+                    }}
+                />
             </div>
             <div className={styles.imagesList}>
             {item.images.map((image, index) => (
