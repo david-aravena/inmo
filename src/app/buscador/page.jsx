@@ -16,14 +16,14 @@ export default function Search(){
             value: "Publicaciones", 
             attributes: [
                 {text:"Tema", name:"theme"},
-                {text: "Tipo", name:"type"}
+                {text: "Tipo", name:"type"},
+                {text: "Autor", name:"author"}
             ] 
         },
         { 
             value: "Usuarios", 
             attributes: [
-                {text:"Nombre", name:"name"},
-                {text: "Autor", name:"author"}, 
+                {text:"Nombre", name:"name"}, 
                 {text: "Ciudad", name:"city"},
                 {text: "Rubro", name:"heading"},
                 {text: "Edad", name:"age"}
