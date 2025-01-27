@@ -30,13 +30,7 @@ export default async function Social(){
 
     return(
         <>
-            
-            <div className="searchContainer">
-                <Link href={`/buscador`}>
-                    <Search />
-                </Link>
-            </div>
-            <div style={{position:"relative", width:"100%", display:"flex", flexDirection:"column", alignItems:"center", height:"auto"}}>
+            <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"column", alignItems:"center", height:"auto"}}>
                 {posts.map((item, index) => (
                     <Link href={`/user/${item.author}`} key={index}>
                         <CardSocialUI item={item} index={index}>
@@ -49,6 +43,12 @@ export default async function Social(){
                         </CardSocialUI>
                     </Link>
                 ))}
+
+                <div className="searchContainer">
+                    <Link href={`/buscador`}>
+                        <Search />
+                    </Link>
+                </div>
             </div>
             <div className="changeContentBarContainer">
                 <ChangeContentBar icons={icons} />

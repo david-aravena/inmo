@@ -4,8 +4,7 @@
     background-color: #3980ff;
     padding:8px;
     border-radius:10rem;
-    width:fit-content; 
-    transform: translateX(230px)
+    width:fit-content;
 }
 
 @media (max-width: 700px) {
