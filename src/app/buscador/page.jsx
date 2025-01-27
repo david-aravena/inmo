@@ -5,7 +5,7 @@ export default function Search(){
         { 
             value: "Propiedades", 
             attributes: [
-                {text:"Dormitorios", name:"roomsNumber"},
+                {text:"Dormitorios", name:"bedRooms"},
                 {text: "Baños", name:"bathroomsNumber"}, 
                 {text: "Estacionamientos", name:"parking"}, 
                 {text: "Mts", name:"mts"}, 
