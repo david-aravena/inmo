@@ -15,8 +15,8 @@ export default function ShowImages({item, styles}){
                     width={500}
                     height={500}
                     style={{
-                    width: '100%',
-                    height: 'auto',
+                        width: '100%',
+                        height: 'auto',
                     }}
                 />
             </div>

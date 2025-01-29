@@ -21,7 +21,6 @@ export default async function Show({ params }) {
         <div className={styles.buttonsContainer}>
           <Link href={"/properties"} ><button className="buttons" style={{borderRadius:"4px 0 0 4px"}}>volver al home</button></Link>
           <FormContact styles={styles} />
-
         </div>
         {filteredAttributes.map(([key, value]) => (
           <div key={key} className={styles.itemContainer}>
