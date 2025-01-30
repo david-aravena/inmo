@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChangeContentBar from "src/components/changeContentBar/";
 import AnimatedInput from 'src/components/animatedInput/'
+import styles from './profile.module.css'
+
 
 export default function Profile(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isCreateProject, setIsCreateProject] = useState(false);
     const [isCreateProperty, setIsCreateProperty] = useState(false);
+    const [imageSelected, setImageSelected] = useState("")
     const [uploadedImages, setUploadedImages] = useState([]);
     const router = useRouter();
 
@@ -31,6 +34,7 @@ export default function Profile(){
             const file = event.target.files[0];
             if (file) {
                 const imageUrl = URL.createObjectURL(file);
+                setImageSelected(imageUrl)
                 setUploadedImages((prevImages) => [...prevImages, { file, imageUrl }]);
             }
         };
@@ -52,17 +56,17 @@ export default function Profile(){
 
     return(
         <>
-            <div style={{display:"flex", justifyContent:"center", alignItems:"center", width:"100%", height:"100%"}}>
-                <div style={{width:"75%", height:"75%", background:"var(--background-gray)", border: "1px solid var(--input-border)", borderRadius:"8px", display:"flex", flexDirection:"column"}}>
-                    <div style={{borderBottom: "1px solid var(--input-border)", width:"100%"}}>
+            <div className={styles.profile}>
+                <div className={styles.profileContainer}>
+                    <div className={styles.createProjectContainer}>
                         <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}} onClick={() => setIsCreateProject(!isCreateProject)}>
                             {isCreateProject ? "Proyectos" : "Crear proyecto"}
                         </button>
                     </div>
-                    <div style={{height:"100%"}}>
+                    <div className={styles.formNewProjectContainer}>
                         {isCreateProject && (
                             !isCreateProperty ? 
-                                <div style={{width:"50%", height:"100%"}}>
+                                <div className={styles.nameNewProjectContainer}>
                                     <h3 style={{color: "white"}}>Nuevo proyecto</h3>
                                     <form>
                                         <AnimatedInput nameInput={"name"} textInput={"Nombre"} />
@@ -72,8 +76,8 @@ export default function Profile(){
                                     </div>
                                 </div>
                             :
-                                <div style={{display:"flex", height:"100%"}}>
-                                    <div style={{width:"50%"}}>
+                                <div className={styles.formNewPropertyContainer}>
+                                    <div className={styles.inputsNewPropertyContainer}>
                                         <form>
                                             <AnimatedInput nameInput={"price"} textInput={"Valor"} />
                                             <AnimatedInput nameInput={"ubication"} textInput={"Ubicación"} />
@@ -81,29 +85,21 @@ export default function Profile(){
                                             <AnimatedInput nameInput={"bathrooms"} textInput={"Baños"} />
                                         </form>
                                     </div>
-                                    <div style={{width:"50%", height:"100%", display:"flex", flexDirection:"column", alignItems:"center", padding:"1rem"}}>
+                                    <div className={styles.imagesNewProperty}>
                                         {uploadedImages.length ?
                                             <div 
-                                            style={{width:"100%", height:"80%", background:"white", display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            {uploadedImages[0] ? 
-                                                <img src={uploadedImages[0].imageUrl} alt="" width="100%" height="100%" style={{objectFit:"cover"}} />
-                                            
-                                            :
-                                                <img src="/svg/uploadImage.svg" width="15%" height="15%" alt="" />
-                                            }
+                                                style={{width:"100%", height:"80%", background:"white", display:"flex", justifyContent:"center", alignItems:"center"}}
+                                            >
+                                                <img src={imageSelected} alt="" width="100%" height="100%" style={{objectFit:"cover"}} />
                                             </div>
                                     
                                         :
 
                                             <div 
-                                            onClick={() => getImageProperty()}
-                                            style={{width:"100%", height:"80%", background:"white", display:"flex", justifyContent:"center", alignItems:"center"}}>
-                                            {uploadedImages[0] ? 
-                                                <img src={uploadedImages[0].imageUrl} alt="" width="100%" height="100%" style={{objectFit:"cover"}} />
-                                            
-                                            :
+                                                onClick={() => getImageProperty()}
+                                                style={{width:"100%", height:"80%", background:"white", display:"flex", justifyContent:"center", alignItems:"center"}}
+                                            >
                                                 <img src="/svg/uploadImage.svg" width="15%" height="15%" alt="" />
-                                            }
                                             </div>
                                         }
                                         
@@ -114,7 +110,7 @@ export default function Profile(){
                                                         agregar foto
                                                     </button>
                                                     {uploadedImages.map((image) => (
-                                                        <img src={image.imageUrl} alt="" height="100%" width="100px" style={{objectFit:"cover", padding:"8px"}} />
+                                                        <img src={image.imageUrl} alt="" height="100%" width="100px" style={{objectFit:"cover", padding:"8px"}} onClick={() => setImageSelected(image.imageUrl)} />
                                                     ))}
                                                 </>
                                             )}

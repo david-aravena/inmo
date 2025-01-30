@@ -8,7 +8,7 @@ export default function Navbar(){
     <nav style={{display:"flex", justifyContent:"space-between", alignItems: "center", padding:"0 1rem"}}>
       <div>
         <Link href="/">
-          <Image src="/images/inmobiliarioLogo.png" width={117} height={117} alt="Error logo" />
+          <Image src="/images/inmobiliarioLogo.png" width={117} height={117} alt="Error logo" priority />
         </Link>
       </div>
       <div>
