@@ -1,0 +1,21 @@
+.projectContainer{
+  width: 100%;
+  height: auto;
+  border-top: 1px solid var(--input-border);
+  border-bottom: 1px solid var(--input-border);
+  display: flex;
+}
+
+.infoProjectContainer {
+  flex: 15%;
+  color: white;
+}
+
+.imagesPropertiesContainer {
+  flex: 70%;
+  overflow: auto;
+}
+
+.showContainer {
+  flex: 15%;
+}

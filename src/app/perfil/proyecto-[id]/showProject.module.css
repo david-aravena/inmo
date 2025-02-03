@@ -1,4 +1,4 @@
-.profile{
+.createProject{
   width:100%;
   height:100%;
   display:flex;
@@ -6,7 +6,7 @@
   align-items:center;
 }
 
-.profileContainer{
+.createProjectContainer{
   width:75%;
   height:75%;
   background:var(--background-gray);
@@ -22,16 +22,16 @@
   width:100%
 }
 
-.projectsContainer{
+.projectContainer{
   flex: 1;
   position: relative;
+  display: flex;
+  overflow: auto;
+  width: 100%;
 }
 
-@media(max-width: 700px){
-
-  .profileContainer{
-    width:100%;
-    height: 100%;
-  }
-
+.sectionProject{
+  width: 100%;
+  height: 100%;
+  flex: 0 0 100%;
 }
