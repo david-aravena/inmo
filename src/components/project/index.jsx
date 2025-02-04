@@ -1,63 +1,24 @@
-import { useState, useEffect } from 'react';
-import Link from "next/link";
-import AnimatedInput from 'src/components/animatedInput/';
 import styles from './project.module.css';
 
-export default function Project({ data, index }) {
-    const [project, setProject] = useState(data);
-
-    useEffect(() => {
-        setProject(data);
-    }, [data]);
-
-    const getNameNewProject = (e) => {
-        e.preventDefault();
-        const nameValue = e.target.elements["name"].value;
-        setProject((prev) => ({ ...prev, name: nameValue }));
-    };
+export default function Project({ data, index, children }) {
 
     return (
-        <div className={styles.projectContainer} style={!project.name ? { borderTop: "2px solid red", borderBottom: "2px solid red", background: "#230000" } : {}}>
-            <div className={styles.infoProjectContainer}>
-                <div>
-                    {project.name ?
-                        <p>nombre: {project.name}</p>
-                    :
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            getNameNewProject(e);
-                        }}>
-                            <AnimatedInput textInput={"Nombre"} nameInput={"name"} />
-                            <input type="submit" value="crear" />
-                        </form>
-                    }
-                </div>
-                <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    <h2>{project.propertiesAmmount} propiedades</h2>
-                </div>
+        <div className={styles.projectContainer}>
+            <div style={{position:"absolute", top:0, left:0, width:"100%"}}>
+                <h3 style={{ color:"white", marginLeft: "10px", textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)"}}>
+                    {data.nombre}
+                </h3>
             </div>
 
-            {project.properties && project.properties.length ?
-                <div className={styles.imagesPropertiesContainer}>
-                    {project.properties.map((property, index) => (
-                        <img key={index} src={property.previewImage} alt="" height="100%" width="100px" style={{ objectFit: "cover" }} />
-                    ))}
-                </div>
-                :
-                <div className={styles.imagesPropertiesContainer} style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}>
-                    <Link href={`/perfil/nueva-propiedad/${project.name}`}>
-                        <img src="/svg/createProperty.svg" alt="" />
-                    </Link>
-                </div>
-            }
+            {children}
 
-            <div className={styles.showContainer}>
-                {project.name && (
-                    <Link href={`/perfil/proyecto-${project.name}`}>
-                        Ver
-                    </Link>
-                )}
+            <div 
+                style={{position:"absolute", bottom:0, left:0, width:"100%", color:"white"}}
+                className={styles.footer}
+            >
+                <p>{data.direccion} {data.comuna}</p>
             </div>
+            
         </div>
     );
 }

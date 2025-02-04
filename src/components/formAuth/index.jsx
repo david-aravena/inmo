@@ -26,7 +26,7 @@ export default function FormAuth(){
                     token: usuarioData.TokenVinculo, 
                     name: usuarioData.NombreCompleto
                 });
-                router.push('/perfil')
+                router.push('/proyectos')
         
             } catch (error) {
                 setIsLoading(false);
