@@ -7,7 +7,10 @@ export const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
 
     if (currentUser && !sessionStorage.getItem('token')) {
-        sessionStorage.setItem('token', currentUser.token);
+        sessionStorage.setItem('token', JSON.stringify({
+            token: currentUser.token,
+            id: currentUser.id,
+          }));
     }
 
     return(

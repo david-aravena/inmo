@@ -53,6 +53,20 @@ export default function AnimatedInput({
                     </select>
                 </>
             )}
+
+            {type === "date" && (
+                <>
+                    <label htmlFor={`${nameInput}`} className={styles.labelBlur}>{`${textInput}`}</label>
+                    <input type="date" id={`${nameInput}`} name={`${nameInput}`} className={styles.textInput} />
+                </>
+            )}
+
+            {type === "textarea" && (
+                <>
+                    <label htmlFor={`${nameInput}`} className={styles.labelBlur}>{`${textInput}`}</label>
+                    <textarea id={`${nameInput}`} name={`${nameInput}`} rows="4" cols="50" className={styles.textInput} />
+                </>
+            )}
         </div>
     )
 }

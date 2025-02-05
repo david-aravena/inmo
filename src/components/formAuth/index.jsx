@@ -24,7 +24,8 @@ export default function FormAuth(){
                 const usuarioData = JSON.parse(data.usuario)[0];
                 setCurrentUser({ 
                     token: usuarioData.TokenVinculo, 
-                    name: usuarioData.NombreCompleto
+                    name: usuarioData.NombreCompleto,
+                    id: usuarioData.Id
                 });
                 router.push('/proyectos')
         

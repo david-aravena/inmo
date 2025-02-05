@@ -1,22 +1,14 @@
 "use client"
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Project from 'src/components/project/'
+import {getProjects} from 'src/utils/getProjects/'
 import styles from './projects.module.css'
 
 
 export default function Projects(){
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [projects, setProjects] = useState([
-        {
-            nombre:"las garzas",
-            imagen:"https://pics.nuroa.com/nueva_propiedad_a_estrenar_en_venta_comuna_de_lampa_1970002727385474407.jpg",
-            direccion:"los tilos 730",
-            comuna:"talca"
-
-        }
-    ])
+    const [projects, setProjects] = useState([])
 
     const router = useRouter();
 
@@ -25,22 +17,26 @@ export default function Projects(){
         if (!token) {
             router.push("/autenticacion");
         } else {
-            setIsAuthenticated(true);
+            const storedData = sessionStorage.getItem('token');
+            if (storedData) {
+                const parsedData = JSON.parse(storedData);
+                getProjects(parsedData.id).then((result) => {
+                    setProjects(result)
+                })
+            }
         }
     }, [router]);
-
-    if (!isAuthenticated) {
-        return null;
-    }
 
     return(
         <>
             <div className={styles.projects}>
                 <div className={styles.projectsContainer}>
                     <div className={styles.linksSectionsContainer}>
-                        <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
-                            Crear proyecto
-                        </button>
+                        <Link href={`/proyectos/nuevo-proyecto/`}>
+                            <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
+                                Crear proyecto
+                            </button>
+                        </Link>
                     </div>
 
                     <div className={styles.listProjectsContainer}>

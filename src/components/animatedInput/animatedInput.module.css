@@ -67,3 +67,11 @@
     color: blue;
     z-index: 900;
 }
+
+.textInput::-webkit-calendar-picker-indicator {
+    background-color: #88024b;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
