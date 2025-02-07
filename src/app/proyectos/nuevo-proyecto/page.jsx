@@ -50,8 +50,8 @@ export default function NewProject(){
   return(
     <div style={{width:"100%", height:"100%", display:"flex", justifyContent: "center", alignItems: "center"}}>
       <div className={styles.newProjectContainer}>
-        <form onSubmit={getInputsValue} style={{display:"flex", width:"100%", height:"100%"}}>
-          <div style={{width:"50%"}}>
+        <form onSubmit={getInputsValue} className={styles.form}>
+          <div className={styles.formContainer}>
             <AnimatedInput nameInput="nombre" type="text" textInput="Nombre" />
             <AnimatedInput nameInput="direccion" type="text" textInput="Dirección" />
             <div style={{width:"100%", display:"flex", flexDirection:"column"}}>
@@ -61,9 +61,9 @@ export default function NewProject(){
             <AnimatedInput nameInput="descripcion" type="textarea" textInput="Descripción" />
             <input type="submit" value="Guardar" />
           </div>
-          <div style={{width:"50%"}}>
+          <div className={styles.imageFormContainer}>
             <div className={styles.imageContainer}>
-              <ImageEditor width={400} height={500} onSaveImage={setImageSelected}  />
+              <ImageEditor width={400} height={500} onSaveImage={setImageSelected} />
             </div>
           </div>
         </form>

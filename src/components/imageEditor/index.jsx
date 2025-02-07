@@ -7,7 +7,7 @@ export default function MovableImage({
   onSaveImage
 }) {
   const [position, setPosition] = useState(0);
-  const [scale, setScale] = useState(1); // Estado para la escala
+  const [scale, setScale] = useState(1);
   const [image, setImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [lastX, setLastX] = useState(null);
