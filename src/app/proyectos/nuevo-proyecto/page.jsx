@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import AnimatedInput from 'src/components/animatedInput'
 import {saveNewProject} from "src/utils/saveNewProject/"
+import ImageEditor from 'src/components/imageEditor/'
 import styles from './newProject.module.css'
 
 export default function NewProject(){
@@ -53,7 +54,7 @@ export default function NewProject(){
           <div style={{width:"50%"}}>
             <AnimatedInput nameInput="nombre" type="text" textInput="Nombre" />
             <AnimatedInput nameInput="direccion" type="text" textInput="Dirección" />
-            <div style={{width:"100%", display:"flex", justifyContent:"space-around"}}>
+            <div style={{width:"100%", display:"flex", flexDirection:"column"}}>
               <AnimatedInput nameInput="fechaInicio" type="date" textInput="Fecha inicio" />
               <AnimatedInput nameInput="fechaTermino" type="date" textInput="Fecha termino" />
             </div>
@@ -61,12 +62,8 @@ export default function NewProject(){
             <input type="submit" value="Guardar" />
           </div>
           <div style={{width:"50%"}}>
-            <div onClick={() => getImageProperty()} className={styles.imageContainer}>
-              {imageSelected ? 
-                <img src={imageSelected.url} alt="" width="400px" height="100%" style={{objectFit:"cover"}} />
-              :
-                <img src="/svg/uploadImage.svg" alt="" width="15%" height="15%" />
-              }
+            <div className={styles.imageContainer}>
+              <ImageEditor width={400} height={500} onSaveImage={setImageSelected}  />
             </div>
           </div>
         </form>
