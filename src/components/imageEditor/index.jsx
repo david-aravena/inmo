@@ -3,7 +3,8 @@ import { useState, useRef } from "react";
 export default function MovableImage({ 
   width = 400, 
   height = 500, 
-  autoSize = "none"
+  autoSize = "none",
+  onSaveImage
 }) {
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
@@ -12,9 +13,9 @@ export default function MovableImage({
   const [isDragging, setIsDragging] = useState(false);
   const [lastX, setLastX] = useState(null);
   const [lastY, setLastY] = useState(null);
+  const [isEdited, setIsEdited] = useState(false);
   const imageRef = useRef(null);
 
-  // Cargar imagen
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -23,43 +24,38 @@ export default function MovableImage({
     }
   };
 
-  // Iniciar arrastre
   const handleStart = (e) => {
     setIsDragging(true);
     setLastX(e.type === "touchstart" ? e.touches[0].clientX : e.clientX);
     setLastY(e.type === "touchstart" ? e.touches[0].clientY : e.clientY);
   };
 
-  // Mover imagen (mouse o touch)
   const handleMove = (e) => {
     if (!isDragging || !image) return;
-
     const clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
     const clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
-
     if (lastX !== null && lastY !== null) {
       setPositionX((prev) => prev + (clientX - lastX));
       setPositionY((prev) => prev + (clientY - lastY));
     }
-
     setLastX(clientX);
     setLastY(clientY);
-
     if (e.type === "touchmove") {
-      e.preventDefault(); // Prevenir el scroll en móviles
+      e.preventDefault();
     }
   };
 
-  // Finalizar arrastre
   const handleEnd = () => {
     setIsDragging(false);
     setLastX(null);
     setLastY(null);
   };
 
-  // Aplicar edición
-  const handleApplyEdit = () => {
-    alert("Imagen editada. Revise el formulario y guárdelo");
+  const handleSave = (e) => {
+    e.preventDefault();
+    if (!imageRef.current) return;
+    setIsEdited(true);
+    alert("Imagen editada. Revise el formulario y guárdelo.");
   };
 
   const containerStyles = {
@@ -79,11 +75,11 @@ export default function MovableImage({
       <input type="file" accept="image/*" onChange={handleImageUpload} />
       <div 
         style={containerStyles} 
-        onMouseMove={handleMove} 
-        onMouseUp={handleEnd} 
-        onMouseLeave={handleEnd} 
-        onTouchMove={handleMove} 
-        onTouchEnd={handleEnd}
+        onMouseMove={!isEdited ? handleMove : undefined} 
+        onMouseUp={!isEdited ? handleEnd : undefined} 
+        onMouseLeave={!isEdited ? handleEnd : undefined} 
+        onTouchMove={!isEdited ? handleMove : undefined} 
+        onTouchEnd={!isEdited ? handleEnd : undefined}
       >
         {image ? 
           <img
@@ -104,13 +100,24 @@ export default function MovableImage({
             }}
           />
         :
-          <p>Sube una imagen para editar</p>
+          <img
+            ref={imageRef}
+            src={"/svg/photoEditor.svg"}
+            alt="Uploaded"
+            draggable="false"
+            style={{
+              position: "absolute",
+              transformOrigin: "center", 
+              cursor: isDragging ? "grabbing" : "grab",
+              height:"15%"
+            }}
+          />
         }
       </div>
 
-      {image && (
+      {image && !isEdited && (
         <>
-          <label>
+          <label style={{color:"white"}}>
             Escala: {scale.toFixed(2)}
             <input 
               type="range" 
@@ -121,7 +128,8 @@ export default function MovableImage({
               onChange={(e) => setScale(parseFloat(e.target.value))} 
             />
           </label>
-          <button type="button" onClick={handleApplyEdit}>Aplicar edición</button>
+    
+          <button type="button" onClick={handleSave}>Aplicar edición</button>
         </>
       )}
     </div>
