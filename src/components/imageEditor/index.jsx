@@ -6,11 +6,13 @@ export default function MovableImage({
   autoSize = "none",
   onSaveImage
 }) {
-  const [position, setPosition] = useState(0);
+  const [positionX, setPositionX] = useState(0);
+  const [positionY, setPositionY] = useState(0);
   const [scale, setScale] = useState(1);
   const [image, setImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [lastX, setLastX] = useState(null);
+  const [lastY, setLastY] = useState(null);
   const imageRef = useRef(null);
 
   // Cargar imagen
@@ -26,6 +28,7 @@ export default function MovableImage({
   const handleStart = (e) => {
     setIsDragging(true);
     setLastX(e.type === "touchstart" ? e.touches[0].clientX : e.clientX);
+    setLastY(e.type === "touchstart" ? e.touches[0].clientY : e.clientY);
   };
 
   // Mover imagen (mouse o touch)
@@ -33,12 +36,15 @@ export default function MovableImage({
     if (!isDragging || !image) return;
 
     const clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-    
-    if (lastX !== null) {
-      setPosition((prev) => prev + (clientX - lastX));
+    const clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
+
+    if (lastX !== null && lastY !== null) {
+      setPositionX((prev) => prev + (clientX - lastX));
+      setPositionY((prev) => prev + (clientY - lastY));
     }
-    
+
     setLastX(clientX);
+    setLastY(clientY);
 
     if (e.type === "touchmove") {
       e.preventDefault(); // Prevenir el scroll en móviles
@@ -49,6 +55,7 @@ export default function MovableImage({
   const handleEnd = () => {
     setIsDragging(false);
     setLastX(null);
+    setLastY(null);
   };
 
   // Guardar la imagen editada
@@ -65,7 +72,7 @@ export default function MovableImage({
     const img = new Image();
     img.src = image;
     img.onload = () => {
-      ctx.drawImage(img, position, 0, img.width * scale, img.height * scale);
+      ctx.drawImage(img, positionX, positionY, img.width * scale, img.height * scale);
       
       canvas.toBlob((blob) => {
         if (!blob) return;
@@ -112,9 +119,10 @@ export default function MovableImage({
             onTouchStart={handleStart}
             style={{
               position: "absolute",
-              left: `calc(50% + ${position}px)`, // Centra la imagen y aplica el desplazamiento
-              transform: `translateX(-50%) scale(${scale})`, // Centra y escala desde el centro
-              transformOrigin: "center", // Escalado desde el centro
+              left: `calc(50% + ${positionX}px)`, 
+              top: `calc(50% + ${positionY}px)`, 
+              transform: `translate(-50%, -50%) scale(${scale})`, 
+              transformOrigin: "center", 
               cursor: isDragging ? "grabbing" : "grab",
               height: "100%",
             }}
