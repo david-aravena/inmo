@@ -109,7 +109,7 @@ export default function MovableImage({
         onTouchMove={handleMove} 
         onTouchEnd={handleEnd}
       >
-        {image && (
+        {image ? 
           <img
             ref={imageRef}
             src={image}
@@ -127,11 +127,27 @@ export default function MovableImage({
               height: "100%",
             }}
           />
-        )}
+
+        :
+            
+          <img
+            ref={imageRef}
+            src={"/svg/photoEditor.svg"}
+            alt="Uploaded"
+            draggable="false"
+            style={{
+              position: "absolute",
+              transformOrigin: "center", 
+              cursor: isDragging ? "grabbing" : "grab",
+              height:"15%"
+            }}
+          />
+            
+        }
       </div>
 
       {/* Slider para escalar la imagen */}
-      <label>
+      <label style={{color:"white"}}>
         Escala: {scale.toFixed(2)}
         <input 
           type="range" 

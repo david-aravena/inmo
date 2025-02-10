@@ -48,4 +48,8 @@
   .form{
     width:200%;
   }
+
+  .imageContainer{
+    padding: 2rem;
+  }
 }
