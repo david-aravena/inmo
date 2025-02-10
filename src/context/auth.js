@@ -10,7 +10,7 @@ export const AuthProvider = ({children}) => {
         sessionStorage.setItem('token', JSON.stringify({
             token: currentUser.token,
             id: currentUser.id,
-          }));
+        }));
     }
 
     return(

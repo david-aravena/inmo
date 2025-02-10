@@ -9,41 +9,26 @@ export default function NewProject(){
 
   const [imageSelected, setImageSelected] = useState(null);
 
-  const getImageProperty = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.accept = "image/*";
-
-    input.onchange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setImageSelected({file: file ,url:imageUrl})
-        }
-    };
-    input.click();
-  }
-
   const getInputsValue = (e) => {
     e.preventDefault();
     const formData = {id:0};
     const inputs = e.target.querySelectorAll("input, textarea, select");
+    
+    const userData = JSON.parse(sessionStorage.getItem('token'));
+    const userId = userData ? userData.id : null;
   
     inputs.forEach(input => {
-      formData[input.name] = input.value;
+      if(input.type !== "file" || input.type !== "submit" ){
+        formData[input.name] = input.value;
+      }
     });
-    if (imageSelected && imageSelected.file) {
-      const reader = new FileReader();
-      reader.readAsArrayBuffer(imageSelected.file);
-      reader.onloadend = () => {
-        formData["imagen"] = reader.result;
-        console.log(formData);
-      };
-    } else {
-      console.log(formData);
-    }
 
-    saveNewProject(formData)
+    if (imageSelected) {
+      formData["imagen"] = imageSelected;
+      console.log(formData);
+    };
+
+    saveNewProject({...formData, usuarioId: userId})
   };
 
   const scrollToEnd = () => {
@@ -55,8 +40,6 @@ export default function NewProject(){
       });
     }
   };
-  
-  
 
   return(
     <div style={{width:"100%", height:"100%", display:"flex", justifyContent: "center", alignItems: "center"}}>

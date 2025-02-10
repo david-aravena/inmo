@@ -54,8 +54,22 @@ export default function MovableImage({
   const handleSave = (e) => {
     e.preventDefault();
     if (!imageRef.current) return;
-    setIsEdited(true);
-    alert("Imagen editada. Revise el formulario y guárdelo.");
+  
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+  
+    canvas.width = imageRef.current.naturalWidth;
+    canvas.height = imageRef.current.naturalHeight;
+  
+    ctx.drawImage(imageRef.current, 0, 0);
+  
+    canvas.toBlob((blob) => {
+      if (blob) {
+        onSaveImage(blob);
+        setIsEdited(true);
+        alert("Imagen editada. Revise el formulario y guárdelo.");
+      }
+    }, "image/png");
   };
 
   const containerStyles = {
@@ -101,7 +115,6 @@ export default function MovableImage({
           />
         :
           <img
-            ref={imageRef}
             src={"/svg/photoEditor.svg"}
             alt="Uploaded"
             draggable="false"
