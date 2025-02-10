@@ -1,6 +1,6 @@
-import styles from './project.module.css';
+import styles from './projectCardUI.module.css';
 
-export default function Project({ data, index, children }) {
+export default function ProjectCardUI({ data, index, children }) {
 
     return (
         <div className={styles.projectContainer}>

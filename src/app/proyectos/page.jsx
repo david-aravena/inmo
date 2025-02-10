@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Project from 'src/components/project/'
+import ProjectCardUI from 'src/ui/projectCard/'
 import {getProjects} from 'src/utils/getProjects/'
 import styles from './projects.module.css'
 
@@ -43,7 +43,7 @@ export default function Projects(){
                         {projects.length ? 
                             <>
                                 {projects.map((project, index) => (
-                                    <Project key={index} data={project} index={index}>
+                                    <ProjectCardUI key={index} data={project} index={index}>
                                         <img
                                             src={project.imagen ?? "/images/inmobiliarioLogo.png"}
                                             alt="error"
@@ -58,7 +58,7 @@ export default function Projects(){
                                             }}
                                         />
 
-                                    </Project>
+                                    </ProjectCardUI>
                                 ))}
                             </>
                         :

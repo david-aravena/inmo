@@ -3,7 +3,7 @@ export const getProjects = async (id) => {
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: 30 }
+      cache: "no-store" // Evita que Next.js almacene en caché la respuesta
     });
 
     if (!response.ok) {
@@ -16,4 +16,4 @@ export const getProjects = async (id) => {
     console.error('Error al obtener los proyectos:', error);
     throw error;
   }
-}
+};
