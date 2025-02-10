@@ -3,8 +3,7 @@ import { useState, useRef } from "react";
 export default function MovableImage({ 
   width = 400, 
   height = 500, 
-  autoSize = "none",
-  onSaveImage
+  autoSize = "none"
 }) {
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
@@ -58,32 +57,9 @@ export default function MovableImage({
     setLastY(null);
   };
 
-  // Guardar la imagen editada
-  const handleSave = (e) => {
-    e.preventDefault();
-    if (!imageRef.current) return;
-
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-
-    canvas.width = imageRef.current.clientWidth;
-    canvas.height = imageRef.current.clientHeight;
-
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-      ctx.drawImage(img, positionX, positionY, img.width * scale, img.height * scale);
-      
-      canvas.toBlob((blob) => {
-        if (!blob) return;
-
-        const file = new File([blob], "edited-image.png", { type: "image/png" });
-
-        if (onSaveImage) {
-          onSaveImage(file);
-        }
-      }, "image/png");
-    };
+  // Aplicar edición
+  const handleApplyEdit = () => {
+    alert("Imagen editada. Revise el formulario y guárdelo");
   };
 
   const containerStyles = {
@@ -127,39 +103,27 @@ export default function MovableImage({
               height: "100%",
             }}
           />
-
         :
-            
-          <img
-            ref={imageRef}
-            src={"/svg/photoEditor.svg"}
-            alt="Uploaded"
-            draggable="false"
-            style={{
-              position: "absolute",
-              transformOrigin: "center", 
-              cursor: isDragging ? "grabbing" : "grab",
-              height:"15%"
-            }}
-          />
-            
+          <p>Sube una imagen para editar</p>
         }
       </div>
 
-      {/* Slider para escalar la imagen */}
-      <label style={{color:"white"}}>
-        Escala: {scale.toFixed(2)}
-        <input 
-          type="range" 
-          min="0.5" 
-          max="2" 
-          step="0.05" 
-          value={scale} 
-          onChange={(e) => setScale(parseFloat(e.target.value))} 
-        />
-      </label>
-
-      <button type="button" onClick={handleSave}>Guardar Imagen</button>
+      {image && (
+        <>
+          <label>
+            Escala: {scale.toFixed(2)}
+            <input 
+              type="range" 
+              min="0.5" 
+              max="2" 
+              step="0.05" 
+              value={scale} 
+              onChange={(e) => setScale(parseFloat(e.target.value))} 
+            />
+          </label>
+          <button type="button" onClick={handleApplyEdit}>Aplicar edición</button>
+        </>
+      )}
     </div>
   );
 }
