@@ -23,7 +23,8 @@
 }
 
 .formContainer{
-  width:50%
+  width:50%;
+  position:relative;
 }
 
 .imageFormContainer{
@@ -42,7 +43,6 @@
 
   .imageFormContainer{
     width:50%;
-    border: 2px solid red;
   }
 
   .form{

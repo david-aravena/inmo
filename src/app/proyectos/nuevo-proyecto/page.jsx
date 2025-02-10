@@ -45,11 +45,22 @@ export default function NewProject(){
 
     saveNewProject(formData)
   };
+
+  const scrollToEnd = () => {
+    const container = document.querySelector(".newProjectContainer");
+    if (container) {
+      container.scrollTo({
+        left: container.scrollWidth,
+        behavior: "smooth"
+      });
+    }
+  };
+  
   
 
   return(
     <div style={{width:"100%", height:"100%", display:"flex", justifyContent: "center", alignItems: "center"}}>
-      <div className={styles.newProjectContainer}>
+      <div className={`${styles.newProjectContainer} newProjectContainer`}>
         <form onSubmit={getInputsValue} className={styles.form}>
           <div className={styles.formContainer}>
             <AnimatedInput nameInput="nombre" type="text" textInput="Nombre" />
@@ -59,7 +70,10 @@ export default function NewProject(){
               <AnimatedInput nameInput="fechaTermino" type="date" textInput="Fecha termino" />
             </div>
             <AnimatedInput nameInput="descripcion" type="textarea" textInput="Descripción" />
-            <input type="submit" value="Guardar" />
+            <div style={{width:"100%", display:"flex", justifyContent:"space-between"}}>
+              <input type="submit" value="Guardar" />
+              <button type="button" onClick={()=> scrollToEnd()}> Agregar imagen</button>
+            </div>
           </div>
           <div className={styles.imageFormContainer}>
             <div className={styles.imageContainer}>
