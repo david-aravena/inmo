@@ -1,0 +1,36 @@
+.panel{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center; 
+  align-items:center;
+}
+
+.panelContainer{
+  width:75%;
+  height:75%;
+  background:var(--background-gray);
+  border: 1px solid var(--input-border);
+  border-radius:8px;
+  display:flex;
+  flex-direction:column;
+  overflow: auto;
+}
+
+.linksSectionsContainer{
+  border-bottom:1px solid var(--input-border);
+  width:100%;
+}
+
+.dataContainer{
+  flex: 1;
+  position: relative;
+  padding: 1rem;
+  display: flex;
+  overflow-x: auto;
+}
+
+.formContainer{
+  width: 100%;
+  display: flex;
+}
