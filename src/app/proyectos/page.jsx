@@ -43,22 +43,24 @@ export default function Projects(){
                         {projects.length ? 
                             <>
                                 {projects.map((project, index) => (
-                                    <ProjectCardUI key={index} data={project} index={index}>
-                                        <img
-                                            src={project.imagen ?? "/images/inmobiliarioLogo.png"}
-                                            alt="error"
-                                            style={{
-                                                objectFit: "cover",
-                                                height: project.imagen ? "100%" : "15%",
-                                                width: project.imagen ? "100%" : "15%",
-                                                position: "absolute",
-                                                top: "50%",
-                                                left: "50%",
-                                                transform: "translate(-50%, -50%)",
-                                            }}
-                                        />
+                                    <Link href={`/proyectos/detalles/${project.id}`}>
+                                        <ProjectCardUI key={index} data={project} index={index}>
+                                            <img
+                                                src={project.imagen ?? "/images/inmobiliarioLogo.png"}
+                                                alt="error"
+                                                style={{
+                                                    objectFit: "cover",
+                                                    height: project.imagen ? "100%" : "15%",
+                                                    width: project.imagen ? "100%" : "15%",
+                                                    position: "absolute",
+                                                    top: "50%",
+                                                    left: "50%",
+                                                    transform: "translate(-50%, -50%)",
+                                                }}
+                                            />
 
-                                    </ProjectCardUI>
+                                        </ProjectCardUI>
+                                    </Link>
                                 ))}
                             </>
                         :
