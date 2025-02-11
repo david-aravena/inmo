@@ -14,7 +14,6 @@
   border-radius:8px;
   display:flex;
   flex-direction:column;
-  overflow: auto;
 }
 
 .linksSectionsContainer{
@@ -27,7 +26,6 @@
   position: relative;
   padding: 1rem;
   display: flex;
-  overflow-x: auto;
 }
 
 .formContainer{
