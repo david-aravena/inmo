@@ -1,34 +1,14 @@
 import { useState, useRef } from "react";
 
-export default function MovableImage({ 
-  width = 400, 
-  height = 500, 
-  autoSize = "none",
-  onSaveImage
-}) {
+export default function Editor({ image, close, saveImage }) {
+  const [scale, setScale] = useState(1);
   const [positionX, setPositionX] = useState(0);
   const [positionY, setPositionY] = useState(0);
-  const [scale, setScale] = useState(1);
-  const [image, setImage] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [lastX, setLastX] = useState(null);
   const [lastY, setLastY] = useState(null);
-  const [isEdited, setIsEdited] = useState(false);
+
   const imageRef = useRef(null);
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setImage(url);
-    }
-  };
-
-  const handleStart = (e) => {
-    setIsDragging(true);
-    setLastX(e.type === "touchstart" ? e.touches[0].clientX : e.clientX);
-    setLastY(e.type === "touchstart" ? e.touches[0].clientY : e.clientY);
-  };
 
   const handleMove = (e) => {
     if (!isDragging || !image) return;
@@ -45,106 +25,77 @@ export default function MovableImage({
     }
   };
 
+  const handleStart = (e) => {
+    setIsDragging(true);
+    setLastX(e.type === "touchstart" ? e.touches[0].clientX : e.clientX);
+    setLastY(e.type === "touchstart" ? e.touches[0].clientY : e.clientY);
+  };
+
   const handleEnd = () => {
     setIsDragging(false);
     setLastX(null);
     setLastY(null);
   };
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    if (!imageRef.current) return;
-  
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
-  
-    canvas.width = imageRef.current.naturalWidth;
-    canvas.height = imageRef.current.naturalHeight;
-  
-    ctx.drawImage(imageRef.current, 0, 0);
-  
-    canvas.toBlob((blob) => {
-      if (blob) {
-        onSaveImage(blob);
-        setIsEdited(true);
-        alert("Imagen editada. Revise el formulario y guárdelo.");
-      }
-    }, "image/png");
-  };
-
   const containerStyles = {
-    width: autoSize === "width" ? "auto" : autoSize === "full-width" ? "100%" : `${width}px`,
-    height: autoSize === "height" ? "auto" : autoSize === "full-height" ? "100%" : `${height}px`,
+    width: `${400}px`,
+    height: `${500}px`,
     overflow: "hidden",
-    border: "2px solid black",
     position: "relative",
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
     touchAction: "none",
+    background: "#141414",
+    border: "2px solid green",
   };
 
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      <div 
-        style={containerStyles} 
-        onMouseMove={!isEdited ? handleMove : undefined} 
-        onMouseUp={!isEdited ? handleEnd : undefined} 
-        onMouseLeave={!isEdited ? handleEnd : undefined} 
-        onTouchMove={!isEdited ? handleMove : undefined} 
-        onTouchEnd={!isEdited ? handleEnd : undefined}
+    <>
+      <div
+        style={containerStyles}
+        onMouseMove={handleMove}
+        onMouseUp={handleEnd}
+        onMouseLeave={handleEnd}
+        onTouchMove={handleMove}
+        onTouchEnd={handleEnd}
       >
-        {image ? 
-          <img
-            ref={imageRef}
-            src={image}
-            alt="Uploaded"
-            draggable="false"
-            onMouseDown={handleStart}
-            onTouchStart={handleStart}
-            style={{
-              position: "absolute",
-              left: `calc(50% + ${positionX}px)`, 
-              top: `calc(50% + ${positionY}px)`, 
-              transform: `translate(-50%, -50%) scale(${scale})`, 
-              transformOrigin: "center", 
-              cursor: isDragging ? "grabbing" : "grab",
-              height: "100%",
-            }}
-          />
-        :
-          <img
-            src={"/svg/photoEditor.svg"}
-            alt="Uploaded"
-            draggable="false"
-            style={{
-              position: "absolute",
-              transformOrigin: "center", 
-              cursor: isDragging ? "grabbing" : "grab",
-              height:"15%"
-            }}
-          />
-        }
+        <img
+          src={image}
+          alt="Uploaded"
+          draggable="false"
+          onMouseDown={handleStart}
+          onTouchStart={handleStart}
+          ref={imageRef}
+          style={{
+            position: "absolute",
+            left: `calc(50% + ${positionX}px)`,
+            top: `calc(50% + ${positionY}px)`,
+            transform: `translate(-50%, -50%) scale(${scale})`,
+            transformOrigin: "center",
+            cursor: isDragging ? "grabbing" : "grab",
+            height: "100%",
+          }}
+        />
       </div>
 
-      {image && !isEdited && (
-        <>
-          <label style={{color:"white"}}>
-            Escala: {scale.toFixed(2)}
-            <input 
-              type="range" 
-              min="0.5" 
-              max="2" 
-              step="0.05" 
-              value={scale} 
-              onChange={(e) => setScale(parseFloat(e.target.value))} 
-            />
-          </label>
-    
-          <button type="button" onClick={handleSave}>Aplicar edición</button>
-        </>
-      )}
-    </div>
+      {/* Slider para modificar la escala */}
+      <div style={{ position: "absolute", top: "20px", width: "100%", textAlign: "center" }}>
+        <label htmlFor="scaleSlider" style={{ display: "block", color: "#fff" }}>
+          Escala
+        </label>
+        <input
+          type="range"
+          id="scaleSlider"
+          min="0.5"
+          max="3"
+          step="0.01"
+          value={scale}
+          onChange={(e) => setScale(e.target.value)}
+          style={{ width: "80%" }}
+        />
+        <button onClick={() => close()}>cerrar editor</button>
+      </div>
+    </>
   );
 }
