@@ -46,8 +46,7 @@ export default function Editor({ image, close, saveImage }) {
     justifyContent: "center",
     alignItems: "center",
     touchAction: "none",
-    background: "#141414",
-    border: "2px solid green",
+    background: "#141414"
   };
 
   return (
@@ -79,23 +78,7 @@ export default function Editor({ image, close, saveImage }) {
         />
       </div>
 
-      {/* Slider para modificar la escala */}
-      <div style={{ position: "absolute", top: "20px", width: "100%", textAlign: "center" }}>
-        <label htmlFor="scaleSlider" style={{ display: "block", color: "#fff" }}>
-          Escala
-        </label>
-        <input
-          type="range"
-          id="scaleSlider"
-          min="0.5"
-          max="3"
-          step="0.01"
-          value={scale}
-          onChange={(e) => setScale(e.target.value)}
-          style={{ width: "80%" }}
-        />
-        <button onClick={() => close()}>cerrar editor</button>
-      </div>
+    
     </>
   );
 }
