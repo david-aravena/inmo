@@ -14,6 +14,7 @@ export default async function Show({ params }) {
 
   return (
     <div className={styles.containerShow}>
+
       <div className={styles.imagesContainer}>
         <ShowImages item={item} styles={styles} />
       </div>
@@ -31,6 +32,7 @@ export default async function Show({ params }) {
           </div>
         ))}
       </div>
+      
     </div>
   );
 }
