@@ -1,9 +1,10 @@
 "use client"
 import Link from "next/link";
-import {useState } from "react"
+import {useState, useRef} from "react"
 import { useParams } from "next/navigation";
 import AnimatedInput from "src/components/animatedInput"
 import Editor from "src/components/imageEditor/"
+import {saveNewProperty} from 'src/utils/saveProperty/'
 import styles from './detailsProject.module.css'
 
 export default function DetailsProject(){
@@ -12,6 +13,7 @@ export default function DetailsProject(){
   const [images, setImages] = useState([]);
   const [imageSelected, setImageSelected] = useState(null)
   const {id} = useParams();
+  const formRef = useRef(null);
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -32,6 +34,31 @@ export default function DetailsProject(){
       url: imageUrl
     };
     setImages((prevImages) => [imageObject, ...prevImages]);
+  };
+
+  const manejarEnvio = (e) => {
+    e.preventDefault();
+    const valoresFormulario = {id:0, ProyectoId: parseInt(id, 10)};
+
+    const inputs = formRef.current.elements;
+
+    for (let input of inputs) {
+      if (input.name) {
+        let valor = input.value;
+
+        if (input.type === 'number') {
+          valor = parseFloat(valor);
+        }
+
+        if (input.type === 'checkbox') {
+          valor = input.checked;
+        }
+
+        valoresFormulario[input.name] = valor;
+      }
+    }
+
+    saveNewProperty(valoresFormulario);
   };
   
 
@@ -57,7 +84,7 @@ export default function DetailsProject(){
             {isCreateProperty && (
               <div className={styles.formContainer}>
                 <div style={{width:"50%"}}>
-                  <form>
+                  <form ref={formRef}>
                     <AnimatedInput nameInput="precioPesos" textInput="Valor" type="number" />
                     <AnimatedInput nameInput="direccion" textInput="Direccion" type="text" />
                     <AnimatedInput nameInput="tipoInmueble" textInput="Tipo" type="select" options={["casa", "departamento", "terreno", "oficina"]} />
@@ -86,6 +113,7 @@ export default function DetailsProject(){
                       </div>
                     )}
                   </div>
+                    <button onClick={(e) => manejarEnvio(e)}>Guardar formulario</button>
 
                 </div>
               </div>
