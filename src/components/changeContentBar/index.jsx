@@ -2,13 +2,29 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function ChangeContentBar({icons}) {
+const icons = [
+    {
+        url: "/",
+        svg: "/svg/users.svg"
+    },
+    {
+        url: "/properties",
+        svg: "/svg/realstate.svg"
+    },
+    {
+        url: "/info",
+        svg: "/svg/info.svg"
+    }
+]
+
+export default function ChangeContentBar() {
 
     const pathname = usePathname();
 
     if (pathname.startsWith('/show')) {
         return null;
     }
+
 
   const isActive = (path) => pathname === path;
 
