@@ -3,7 +3,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     padding:"1rem";
     position: relative;
-    width:25vw;
+    width: 500px;
     border-radius: 8px;
     animation: fadeInUp 0.5s ease forwards;
 }
@@ -21,7 +21,7 @@
 
 @media (max-width: 800px) {
     .container {
-        width:95vw;
+        width:100vw;
     }
 }
 
