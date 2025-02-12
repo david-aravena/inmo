@@ -1,19 +1,24 @@
 "use client"
 import Link from "next/link";
-import {useState, useRef} from "react"
-import { useParams } from "next/navigation";
+import {useState, useRef, useEffect} from "react"
+import { useParams, useRouter } from "next/navigation";
 import AnimatedInput from "src/components/animatedInput"
 import Editor from "src/components/imageEditor/"
 import {saveNewProperty} from 'src/utils/saveProperty/'
+import {getProject} from 'src/utils/getProject/'
+import { useAuth } from "src/context/auth";
 import styles from './detailsProject.module.css'
 
 export default function DetailsProject(){
 
   const [isCreateProperty, setIsCreateProperty] = useState(false);
+  const [project, setProject] = useState(null);
   const [images, setImages] = useState([]);
   const [imageSelected, setImageSelected] = useState(null)
   const {id} = useParams();
   const formRef = useRef(null);
+  const { currentUser } = useAuth();
+  const router = useRouter();
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -60,6 +65,16 @@ export default function DetailsProject(){
 
     saveNewProperty(valoresFormulario);
   };
+
+  useEffect(() => {
+    if (!currentUser) {
+        router.push("/autenticacion");
+    } else {
+        // getProject(currentUser.id).then((result) => {
+        //     setProject(result)
+        // })
+    }
+  }, [router]);
   
 
   return(

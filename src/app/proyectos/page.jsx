@@ -4,26 +4,22 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ProjectCardUI from 'src/ui/projectCard/'
 import {getProjects} from 'src/utils/getProjects/'
+import { useAuth } from "src/context/auth";
 import styles from './projects.module.css'
 
 
 export default function Projects(){
     const [projects, setProjects] = useState([])
-
+    const { currentUser } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-        const token = sessionStorage.getItem("token");
-        if (!token) {
+        if (!currentUser) {
             router.push("/autenticacion");
         } else {
-            const storedData = sessionStorage.getItem('token');
-            if (storedData) {
-                const parsedData = JSON.parse(storedData);
-                getProjects(parsedData.id).then((result) => {
-                    setProjects(result)
-                })
-            }
+            getProjects(currentUser.id).then((result) => {
+                setProjects(result)
+            })
         }
     }, [router]);
 

@@ -3,7 +3,7 @@ export const getProjects = async (id) => {
 
   try {
     const response = await fetch(url, {
-      cache: "no-store" // Evita que Next.js almacene en caché la respuesta
+      cache: "no-store"
     });
 
     if (!response.ok) {
