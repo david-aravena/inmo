@@ -60,7 +60,7 @@ export default function Editor({ image, close, saveImage }) {
         onTouchEnd={handleEnd}
       >
         <img
-          src={image}
+          src={URL.createObjectURL(image)}
           alt="Uploaded"
           draggable="false"
           onMouseDown={handleStart}

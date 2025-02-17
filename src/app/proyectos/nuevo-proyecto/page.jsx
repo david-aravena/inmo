@@ -43,6 +43,14 @@ export default function NewProject(){
     }
     saveNewProject({...dataObj, id:0, usuarioId: parseInt(currentUser.id, 10)}, currentUser.token);
   }
+
+  const handleImageChange = (e) => {
+    console.log("handleImage")
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      setImageSelected(file);
+    }
+  };
   
 
   useEffect(() => {
@@ -72,14 +80,16 @@ export default function NewProject(){
           
           <div className={styles.imageFormContainer}>
             <div className={styles.imageContainer}>
-              <ImageEditor width={400} height={500} onSaveImage={setImageSelected} />
+              <input type="file" onChange={(e) => handleImageChange(e)} />
+              {imageSelected && (
+                <ImageEditor image={imageSelected} width={400} height={500} onSaveImage={setImageSelected} />
+              )}
             </div>
             <div style={{display:"flex", justifyContent:"space-around", width:"100%", paddingRight:"2rem"}}>
               <button onClick={() => scrollToStart()}>paso 1</button>
               <button onClick={() => onSubmit()}>Crear proyecto</button>
             </div>
           </div>
-
       </div>
     </div>
   )

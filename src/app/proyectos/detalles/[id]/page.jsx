@@ -66,13 +66,33 @@ export default function DetailsProject(){
     saveNewProperty(valoresFormulario);
   };
 
+  const scrollToEnd = () => {
+    const container = document.querySelector(".newPropertyContainer");
+    if (container) {
+      container.scrollTo({
+        left: container.scrollWidth,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const scrollToStart = () => {
+    const container = document.querySelector(".newPropertyContainer");
+    if (container) {
+      container.scrollTo({
+        left: 0,
+        behavior: "smooth"
+      });
+    }
+  };
+
   useEffect(() => {
     if (!currentUser) {
         router.push("/autenticacion");
     } else {
-        // getProject(currentUser.id).then((result) => {
-        //     setProject(result)
-        // })
+      getProject(id).then((result) => {
+          setProject(result)
+      })
     }
   }, [router]);
   
@@ -89,16 +109,15 @@ export default function DetailsProject(){
         </div>
 
         <div className={styles.dataContainer}>
-
           <div style={{width:"100%", height:"100%"}}>
             <div>
               <button onClick={() => setIsCreateProperty(!isCreateProperty)} style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
                 {isCreateProperty ? "Lista" : "Crear"}
               </button>
             </div>
-            {isCreateProperty && (
-              <div className={styles.formContainer}>
-                <div style={{width:"50%"}}>
+            {isCreateProperty ? 
+              <div className={`${styles.formContainer} newPropertyContainer`}>
+                <div style={{width:"100%", flex: "0 0 auto"}}>
                   <form ref={formRef}>
                     <AnimatedInput nameInput="precioPesos" textInput="Valor" type="number" />
                     <AnimatedInput nameInput="direccion" textInput="Direccion" type="text" />
@@ -109,30 +128,28 @@ export default function DetailsProject(){
                     <AnimatedInput nameInput="cantidadBaños" textInput="Baños" type="number" />
                     <AnimatedInput nameInput="cantidadEstacionamiento" textInput="Estacionamiento" type="number" />
                   </form>
+                  <button onClick={() => scrollToEnd()}>paso 2</button>
                 </div>
 
-                <div style={{width:"50%"}}>
-
-                  <div style={{width:"100%", height:"100%", position:"relative"}}>
-                    <div>
-                      <input type="file" accept="image/*" multiple onChange={handleImageUpload} />
-                    </div>
-                    <div style={{display:"flex", overflow:"auto"}}>
-                    {images.map((image, index) => (
-                      <img key={index} src={image.url} alt="" width="400px" height="500px" onClick={(e) => setImageSelected(e.target.src)} style={{objectFit:"cover", transform:"scale(0.9)"}} />
-                    ))}
-                    </div>
+                <div className={styles.imageFormContainer}>
+                  <div className={styles.imageContainer}>
+                    <input type="file" onChange={(e) => handleImageChange(e)} />
                     {imageSelected && (
-                      <div style={{position:"absolute", top:0, left:0, width:"100%", height:"100%", background:"var(--background-gray)", display:"flex", justifyContent:"center"}}>
-                        <Editor image={imageSelected} close={() => setImageSelected(null)} saveImage={(image) => handleSaveImage(image)} />
-                      </div>
+                      <ImageEditor image={imageSelected} width={400} height={500} onSaveImage={setImageSelected} />
                     )}
                   </div>
-                    <button onClick={(e) => manejarEnvio(e)}>Guardar formulario</button>
-
+                  <div style={{display:"flex", justifyContent:"space-around", width:"100%", paddingRight:"2rem"}}>
+                    <button onClick={() => scrollToStart()}>paso 1</button>
+                    <button onClick={() => onSubmit()}>Crear proyecto</button>
+                  </div>
+                  </div>
                 </div>
+            :
+              <div style={{width:"100%", border:"2px solid red"}}>
+                <h2>Lista propiedades</h2>
               </div>
-            )}
+              
+            }
           </div>
 
         </div>

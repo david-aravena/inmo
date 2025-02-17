@@ -9,14 +9,20 @@ export default function ProjectCardUI({ data, index, children }) {
                     {data.descripcion}
                 </h3>
             </div>
-
-            {children}
+            <div style={{width:"100%", display:"flex", justifyContent:"center", alignItems:"center"}}>
+                <ul>
+                    <li>Inicio: {data.fechaInicio}</li>
+                    <li>Termino: {data.fechaFin}</li>
+                    <li>Estado: {data.estadoProyecto}</li>
+                    <li>Vigente: {data.vigente}</li>
+                </ul>
+            </div>
 
             <div 
                 style={{position:"absolute", bottom:0, left:0, width:"100%", color:"white"}}
                 className={styles.footer}
             >
-                <p>{data.direccion}</p>
+                <p>{data.descripcion}</p>
             </div>
             
         </div>
