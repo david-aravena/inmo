@@ -12,6 +12,25 @@
   flex: 0 0 auto;
 }
 
+.nameContainer{
+  position:absolute; 
+  top:0; 
+  left:0; 
+  width:100%;
+  font-size: 1rem;
+  font-family: var(--font-montserrat-semi-bold), sans-serif;
+  font-weight: 600;
+}
+
+.dataContainer{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family: var(--font-montserrat-regular), sans-serif;
+  font-weight: 400;
+}
+
 .infoProjectContainer {
   flex: 15%;
   color: white;
