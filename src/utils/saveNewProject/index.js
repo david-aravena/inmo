@@ -9,6 +9,6 @@ export const saveNewProject = (formData, token) => {
   })
   .then(response => response.json())
   .then(data => console.log("exito: ", data))
-  .catch(error => console.error("Error:", error));
+  .catch(error => console.error("Error:", error))
 }
 

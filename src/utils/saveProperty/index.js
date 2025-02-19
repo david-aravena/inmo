@@ -1,9 +1,10 @@
-export const saveNewProperty = (formData) => {
+export const saveNewProperty = (formData, token) => {
+  console.log(formData, token)
   fetch("https://pssoft.cl/TI_Proyectos/crearPropiedad/", {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",
-      "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3Mzg3NTAwNDN9.-TJodmsD1UY8-zhq91tFE53X-djpdwt3-AK0CcHSUU4` 
+      "Authorization": `Bearer ${token}` 
     },
     body: JSON.stringify(formData),
   })
@@ -11,3 +12,4 @@ export const saveNewProperty = (formData) => {
   .then(data => console.log("exito: ", data))
   .catch(error => console.error("Error:", error));
 }
+
