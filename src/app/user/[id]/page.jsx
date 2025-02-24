@@ -1,39 +1,39 @@
-import {getUser} from 'src/utils/getUser/';
-import Image from "next/image";
-import styles from './user.module.css'
+// app/user/page.js
+import { getUser } from 'src/utils/getUser/';
+import FormContact from 'src/components/formContact/';
+import ShowImages from 'src/components/showImages/';
+import BackButton from 'src/components/backButton/';
+import styles from './user.module.css';
 
-export default async function User({ params }){
+export default async function User({ params }) {
+  const { id } = await params;
+  const decodedName = decodeURIComponent(id);
+  const user = await getUser(decodedName);
 
-    const { id } = await params;
-    const decodedName = decodeURIComponent(id);
-      const user = await getUser(decodedName);
-      console.log("user", user)
-      
-    return(
-        <>
-        <div className={styles.messageContainer}>
-                    <div className="buttons" style={{borderRadius:"0"}}>
-                        <img src='/svg/message.svg' width={40} height={40}/>
-                    </div>
-                </div>
-                
-        <div className={styles.userContainer}>
-                <div className={styles.imageAndLinksContainer}>
-                    <div className={styles.imageContainer}>
-                        <img src={user.photo} alt="photo user" style={{height:"100%", width:"100%", objectFit:"cover", borderRadius:"4px 4px 0 0"}} />
+  // Filtrar atributos (quitar 'image' y 'images')
+  const filteredAttributes = Object.entries(user).filter(
+    ([key]) => key !== 'image' && key !== 'images'
+  );
 
-                        <div style={{position:"absolute", width:"100%", bottom:"0", backgroundColor:"rgba(0, 0, 0, 0.4)"}}>
-                            <h2 className={styles.nameUser}>{user.name}</h2>
-                        </div>
-                    </div>
-                    <div className={styles.linksUserContainer}>
-                        <img src='/svg/whatsapp.svg' width={24} height={24}/>
-                        <img src='/svg/linkedin.svg' width={24} height={24}/>
-                        <img src='/svg/instagram.svg' width={24} height={24}/>
-                        <img src='/svg/facebook.svg' width={24} height={24}/>
-                    </div>
-                </div>
+  return (
+    <div className={styles.containerShow}>
+      <div className={styles.imagesContainer}>
+        <ShowImages item={user} styles={styles} />
+      </div>
+      <div className={styles.infoContainer}>
+        <div className={styles.buttonsContainer}>
+          <BackButton />
+          <FormContact styles={styles} />
         </div>
-        </>
-    )
+        {filteredAttributes.map(([key, value]) => (
+          <div key={key} className={styles.itemContainer}>
+            <strong style={{ color: 'white', textTransform: 'capitalize' }}>
+              {key}:
+            </strong>{' '}
+            <span style={{ color: 'lightgray' }}>{value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
