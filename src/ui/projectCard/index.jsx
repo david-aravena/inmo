@@ -5,7 +5,7 @@ export default function ProjectCardUI({ data, index, children }) {
     return (
         <div className={styles.projectContainer}>
             <div className={styles.nameContainer}>
-                <h3 style={{ color:"white", margin: "8px", textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)"}}>
+                <h3 style={{ color:"white", textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)"}}>
                     {data.descripcion}
                 </h3>
             </div>

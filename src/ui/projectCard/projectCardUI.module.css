@@ -1,32 +1,23 @@
 .projectContainer{
-  width: 400px;
-  height: 100%;
-  border-top: 1px solid var(--input-border);
+  width: 100%;
+  /* border-top: 1px solid var(--input-border); */
   border-bottom: 1px solid var(--input-border);
-  display: flex;
-  position: relative;
   border-radius: 8px;
   overflow: hidden;
-  margin: 0 1rem;
   background-color: #141414;
-  flex: 0 0 auto;
+  padding: 8px;
 }
 
-.nameContainer{
-  position:absolute; 
-  top:0; 
-  left:0; 
+.nameContainer{ 
   width:100%;
   font-size: 1rem;
   font-family: var(--font-montserrat-semi-bold), sans-serif;
   font-weight: 600;
+  padding: 8px 0;
 }
 
 .dataContainer{
   width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   font-family: var(--font-montserrat-regular), sans-serif;
   font-weight: 400;
 }
@@ -51,6 +42,6 @@
   padding: 4px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
  
 }
