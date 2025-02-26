@@ -18,6 +18,7 @@ export default function Projects(){
             router.push("/autenticacion");
         } else {
             getProjects(currentUser.id).then((result) => {
+                sessionStorage.setItem("projects", JSON.stringify(result));
                 setProjects(result)
             })
         }
