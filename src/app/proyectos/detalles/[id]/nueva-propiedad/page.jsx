@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import ImageEditor from 'src/components/imageEditor/'
 import {saveNewProperty} from 'src/utils/saveProperty/'
 import { useAuth } from "src/context/auth";
@@ -12,6 +12,7 @@ export default function NewProperty(){
 
   const [images, setImages] = useState([]);
   const { currentUser } = useAuth();
+  const {id} = useParams();
   const router = useRouter();
   const formRef = useRef(null);
 
@@ -49,9 +50,7 @@ export default function NewProperty(){
       }
     }
 
-    console.log({...dataObj, images: images.map(({ objectUrl, ...rest }) => rest)});
-
-    // saveNewProperty({...dataObj, ...binaryDataArray, id:0}, currentUser.token);
+    saveNewProperty({...dataObj, id:0, latitud:"9032983289", longitud:"9803289238932", precioUF:100.20, cuentaPiscina:true, cuentaBodega: false, cuentaGimnasio:false ,ProyectoId: parseInt(id, 10) ,images: images.map(({ objectUrl, ...rest }) => rest)}, currentUser.token);
   }
 
   const handleImageChange = (e) => {
