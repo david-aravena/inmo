@@ -9,7 +9,7 @@ import styles from './newProject.module.css'
 
 export default function NewProject(){
 
-  const [imageSelected, setImageSelected] = useState(null);
+  const [imageSelected, setImageSelected] = useState([]);
   const { currentUser } = useAuth();
   const router = useRouter();
   const formRef = useRef(null);
@@ -45,10 +45,9 @@ export default function NewProject(){
   }
 
   const handleImageChange = (e) => {
-    console.log("handleImage")
     const file = e.target.files && e.target.files[0];
     if (file) {
-      setImageSelected(file);
+      setImageSelected([{objectUrl:URL.createObjectURL(file)}]);
     }
   };
   
@@ -82,7 +81,7 @@ export default function NewProject(){
             <div className={styles.imageContainer}>
               <input type="file" onChange={(e) => handleImageChange(e)} />
               {imageSelected && (
-                <ImageEditor image={imageSelected} width={400} height={500} onSaveImage={setImageSelected} />
+                <ImageEditor images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} />
               )}
             </div>
             <div style={{display:"flex", justifyContent:"space-around", width:"100%", paddingRight:"2rem"}}>

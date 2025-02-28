@@ -1,31 +1,50 @@
-.newProjectContainer{
+.panel{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center; 
+  align-items:center;
+}
+
+.panelContainer{
   width:75%;
   height:75%;
   background:var(--background-gray);
   border: 1px solid var(--input-border);
   border-radius:8px;
-  display: flex;
+  display:flex;
+  flex-direction:column;
   overflow: auto;
-  overflow-x: hidden;
 }
 
+.linksSectionsContainer{
+  border-bottom:1px solid var(--input-border);
+  width:100%;
+}
 
+.dataContainer{
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  overflow: auto;
+  width: 200%;
+}
 
 .formContainer{
-  width:100%;
+  width:50%;
   height: 100%;
-  position:relative;
   flex: 0 0 auto;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow: auto;
+  align-items:  center;
 }
 
 .form{
   display:flex;
   flex-direction: column;
   width:50%;
+  height: 100%;
 }
 
 .imageFormContainer{

@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
+import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
 import { useRouter } from "next/navigation";
 import ImageEditor from 'src/components/imageEditor/'
@@ -37,27 +38,20 @@ export default function NewProperty(){
   const onSubmit = async () => {
     if (!formRef.current) return {};
     const formData = new FormData(formRef.current);
-    const dataObj = {cuentaPiscina: true, cuentaBodega: false, cuentaGimnasio: false, ProyectoId:1, latitud:"981278127812", longitud:"982382378387", precioUF:100.0, imagen1:"oiasdioadsib", imagen2:"oahuhadsiohdsaohidas", imagen3:"oinasiondasioas", imagen4:"iohdsaoihsdahioadshiodsa"};
+    const dataObj = {};
     for (let [key, value] of formData.entries()) {
       if (key === "cantidadDormitorios" || key === "cantidadBaños" || key === "cantidadEstacionamiento") {
         dataObj[key] = Number(value);
       } else if (key === "precioPesos" || key === "metrosCuadrados" || key === "precioUf") {
-        dataObj[key] = parseFloat(parseFloat(value)).toFixed(2);  
+        dataObj[key] = parseFloat(parseFloat(value).toFixed(1)); 
       } else {
         dataObj[key] = value;
       }
     }
 
-    const selectedImages = images.slice(0, 4);
+    console.log({...dataObj, images: images.map(({ objectUrl, ...rest }) => rest)});
 
-    const binaryDataArray = {};
-    await Promise.all(
-      selectedImages.map(async (img, index) => {
-        binaryDataArray[`imagen${index + 1}Bit`] = await img.file.arrayBuffer();
-      })
-    );
-
-    saveNewProperty({...dataObj, ...binaryDataArray, id:0}, currentUser.token);
+    // saveNewProperty({...dataObj, ...binaryDataArray, id:0}, currentUser.token);
   }
 
   const handleImageChange = (e) => {
@@ -79,10 +73,26 @@ export default function NewProperty(){
   }, [router]);
 
   return(
-    <div style={{width:"100%", height:"100%", display:"flex", justifyContent: "center", alignItems: "center"}}>
-      <div className={`${styles.newProjectContainer} newPropertyContainer`}>
+    <div className={styles.panel}>
+      <div className={`${styles.panelContainer} newPropertyContainer`}>
+        <div className={styles.linksSectionsContainer}>
+          <Link href={`/proyectos/detalles/1`}>
+            <button style={{padding: "1rem", background:"none", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
+                Proyecto
+            </button>
+          </Link>
+          <Link href="/proyectos/nueva-propiedad">
+            <button style={{padding: "1rem", background:"#992264", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
+              Propiedades
+            </button>
+          </Link>
+        </div>
 
+        <div className={styles.dataContainer}>
           <div className={styles.formContainer}>
+            <div style={{display:"flex", justifyContent:"flex-end", width:"100%", paddingRight:"2rem"}}>
+              <button style={{padding:"8px", fontSize:"1rem"}} onClick={() => scrollToEnd()}>Subir imagenes</button>
+            </div>
             <form className={styles.form} ref={formRef}>
               <AnimatedInput nameInput="precioPesos" textInput="Valor" type="number" />
               <AnimatedInput nameInput="direccion" textInput="Direccion" type="text" />
@@ -93,25 +103,18 @@ export default function NewProperty(){
               <AnimatedInput nameInput="cantidadBaños" textInput="Baños" type="number" />
               <AnimatedInput nameInput="cantidadEstacionamiento" textInput="Estacionamiento" type="number" />
             </form>
-            <div style={{display:"flex", justifyContent:"flex-end", width:"100%", paddingRight:"2rem"}}>
-              <button onClick={() => scrollToEnd()}>paso 2</button>
-            </div>
           </div>
-          
-          <div className={styles.imageFormContainer}>
-            <div className={styles.imageContainer}>
-              <div style={{width:"100%", padding:"1rem"}}>
+          <div style={{width:"50%", color:"white", padding:"0 2rem"}}>
+            <div style={{display:"flex", justifyContent:"space-between"}}>
+              <div style={{display:"flex", flexDirection:"column"}}>
+                <button type="button" onClick={() => scrollToStart()}> {"< Formulario"} </button>
                 <input type="file" multiple onChange={(e) => handleImageChange(e)} />
               </div>
-              <div style={{width:"100%", height:"auto"}}>
-                <ImageEditor images={images}/>
-              </div>
+              <button onClick={() => onSubmit()}>Guardar</button>
             </div>
-            <div style={{display:"flex", justifyContent:"space-around", width:"100%", paddingRight:"2rem"}}>
-              <button onClick={() => scrollToStart()}>paso 1</button>
-              <button onClick={() => onSubmit()}>Crear proyecto</button>
-            </div>
+            <ImageEditor images={images} />
           </div>
+        </div>
       </div>
     </div>
   )
