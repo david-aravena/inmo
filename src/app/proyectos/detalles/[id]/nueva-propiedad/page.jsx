@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
 import { useRouter, useParams } from "next/navigation";
-import ImageEditor from 'src/components/imageEditor/'
+import ListImagesSelected from 'src/components/ListImagesSelected'
 import {saveNewProperty} from 'src/utils/saveProperty/'
 import { useAuth } from "src/context/auth";
 import styles from './newProperty.module.css'
@@ -103,7 +103,7 @@ export default function NewProperty(){
               <AnimatedInput nameInput="cantidadEstacionamiento" textInput="Estacionamiento" type="number" />
             </form>
           </div>
-          <div style={{width:"50%", color:"white", padding:"0 2rem"}}>
+          <div style={{width:"50%", color:"white", padding:"0 2rem", position:"relative"}}>
             <div style={{display:"flex", justifyContent:"space-between"}}>
               <div style={{display:"flex", flexDirection:"column"}}>
                 <button type="button" onClick={() => scrollToStart()}> {"< Formulario"} </button>
@@ -111,7 +111,7 @@ export default function NewProperty(){
               </div>
               <button onClick={() => onSubmit()}>Guardar</button>
             </div>
-            <ImageEditor images={images} />
+            <ListImagesSelected images={images} setImages={setImages}/>
           </div>
         </div>
       </div>

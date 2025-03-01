@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import AnimatedInput from 'src/components/animatedInput'
 import {saveNewProject} from "src/utils/saveNewProject/"
 import { useRouter } from "next/navigation";
-import ImageEditor from 'src/components/imageEditor/'
+import ImageEditor from 'src/components/ListImagesSelected'
 import { useAuth } from "src/context/auth";
 import styles from './newProject.module.css'
 
