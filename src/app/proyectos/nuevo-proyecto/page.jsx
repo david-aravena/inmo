@@ -15,26 +15,6 @@ export default function NewProject() {
   const router = useRouter();
   const formRef = useRef(null);
 
-  const scrollToEnd = () => {
-    const container = document.querySelector(".newProjectContainer");
-    if (container) {
-      container.scrollTo({
-        left: container.scrollWidth,
-        behavior: "smooth"
-      });
-    }
-  };
-
-  const scrollToStart = () => {
-    const container = document.querySelector(".newProjectContainer");
-    if (container) {
-      container.scrollTo({
-        left: 0,
-        behavior: "smooth"
-      });
-    }
-  };
-
   const onSubmit = () => {
     if (!formRef.current) return {};
     const formData = new FormData(formRef.current);
@@ -80,6 +60,7 @@ export default function NewProject() {
             </button>
           </Link>
         </div>
+        
         <div className={styles.listProjectsContainer}>
           <div className={styles.formContainer}>
             <form className={styles.form} ref={formRef}>

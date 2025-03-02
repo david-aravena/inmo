@@ -11,30 +11,14 @@ import styles from './newProperty.module.css'
 export default function NewProperty(){
 
   const [images, setImages] = useState([]);
+  const [imageSelected, setImageSelected] = useState([]);
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);  // Estado para controlar si el botón está habilitado
+
   const { currentUser } = useAuth();
   const {id} = useParams();
   const router = useRouter();
   const formRef = useRef(null);
-
-  const scrollToEnd = () => {
-    const container = document.querySelector(".newPropertyContainer");
-    if (container) {
-      container.scrollTo({
-        left: container.scrollWidth,
-        behavior: "smooth"
-      });
-    }
-  };
-
-  const scrollToStart = () => {
-    const container = document.querySelector(".newPropertyContainer");
-    if (container) {
-      container.scrollTo({
-        left: 0,
-        behavior: "smooth"
-      });
-    }
-  };
 
   const onSubmit = async () => {
     if (!formRef.current) return {};
@@ -72,11 +56,16 @@ export default function NewProperty(){
   }, [router]);
 
   return(
-    <div className={styles.panel}>
-      <div className={`${styles.panelContainer} newPropertyContainer`}>
+    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div className={`${styles.newProjectContainer} newProjectContainer`}>
         <div className={styles.linksSectionsContainer}>
+          <Link href={`/proyectos/`}>
+            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
+                Proyectos
+            </button>
+          </Link>
           <Link href={`/proyectos/detalles/1`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
+            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
                 Proyecto
             </button>
           </Link>
@@ -87,12 +76,9 @@ export default function NewProperty(){
           </Link>
         </div>
 
-        <div className={styles.dataContainer}>
+        <div className={styles.listProjectsContainer}>
           <div className={styles.formContainer}>
-            <div style={{display:"flex", justifyContent:"flex-end", width:"100%", paddingRight:"2rem"}}>
-              <button style={{padding:"8px", fontSize:"1rem"}} onClick={() => scrollToEnd()}>Subir imagenes</button>
-            </div>
-            <form className={styles.form} ref={formRef}>
+            <form className={styles.form} ref={formRef}>  
               <AnimatedInput nameInput="precioPesos" textInput="Valor" type="number" />
               <AnimatedInput nameInput="direccion" textInput="Direccion" type="text" />
               <AnimatedInput nameInput="tipoInmueble" textInput="Tipo" type="select" options={["casa", "departamento", "terreno", "oficina"]} />
@@ -102,18 +88,37 @@ export default function NewProperty(){
               <AnimatedInput nameInput="cantidadBaños" textInput="Baños" type="number" />
               <AnimatedInput nameInput="cantidadEstacionamiento" textInput="Estacionamiento" type="number" />
             </form>
-          </div>
-          <div style={{width:"50%", color:"white", padding:"0 2rem", position:"relative"}}>
-            <div style={{display:"flex", justifyContent:"space-between"}}>
-              <div style={{display:"flex", flexDirection:"column"}}>
-                <button type="button" onClick={() => scrollToStart()}> {"< Formulario"} </button>
-                <input type="file" multiple onChange={(e) => handleImageChange(e)} />
-              </div>
-              <button onClick={() => onSubmit()}>Guardar</button>
+            <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+              <button onClick={() => onSubmit()} disabled={isButtonDisabled}>Crear proyecto</button>
             </div>
-            <ListImagesSelected images={images} setImages={setImages}/>
+          </div>
+
+          <div className={styles.imageFormContainer}>
+            <div className={styles.imageContainer}>
+              <input type="file" onChange={(e) => handleImageChange(e)} />
+              {imageSelected ?
+                <ListImagesSelected images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} setImages={() => setImageSelected} />
+                :
+                <h2 style={{ color: "white" }}>hola</h2>
+              }
+            </div>
           </div>
         </div>
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   )

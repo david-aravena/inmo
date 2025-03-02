@@ -14,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-thumb{
-  background:#242222;
+  background:#524e4e;
   border-radius: 5px;
 }
 
@@ -60,6 +60,15 @@ a{
   cursor: pointer;
   font-family: var(--font-montserrat-regular), sans-serif;
   font-weight: 400;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li{
+  padding: 8px;
 }
 
 .changeContentBarContainer{

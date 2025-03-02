@@ -52,6 +52,11 @@ export default function DetailsProject(){
     <div className={styles.panel}>
       <div className={styles.panelContainer}>
         <div className={styles.linksSectionsContainer}>
+          <Link href={`/proyectos/`}>
+            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
+                Proyectos
+            </button>
+          </Link>
           <Link href={`/proyectos/nuevo-proyecto/`}>
             <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
                 Proyecto
@@ -65,7 +70,7 @@ export default function DetailsProject(){
         </div>
 
         <div className={styles.dataContainer}>
-          <div style={{width:"100%", color:"white"}}>
+          <div style={{ color:"white"}}>
           {project ? (
               <>
                 <button onClick={() => setIsEditing(!isEditing)}>

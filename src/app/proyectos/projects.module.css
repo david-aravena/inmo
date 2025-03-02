@@ -7,12 +7,11 @@
 }
 
 .projectsContainer{
+  height: 75%;
   width:auto;
-  height:75%;
   border-radius:8px;
   display:flex;
   flex-direction:column;
-  overflow-y: auto;
 }
 
 .linksSectionsContainer{
@@ -24,7 +23,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: auto;
 }
 
 @media(max-width: 900px){
