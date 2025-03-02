@@ -25,6 +25,8 @@
   border: 1px solid var(--input-border);
   font-family: var(--font-montserrat-regular), sans-serif;
   font-weight: 400;
+  background-color: rgb(19, 19, 19);
+  border-radius: 8px;
 }
 
 .formContainer{
