@@ -17,6 +17,7 @@
   overflow-x: auto;
   border: 1px solid var(--input-border);
   border-radius: 8px;
+  background-color: rgb(19, 19, 19);
 }
 
 .formContainer{
