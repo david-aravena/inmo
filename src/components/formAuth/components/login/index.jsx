@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useAnimationInput } from "./../../hook/useAnimationInput"
 
 export default function Login({styles, submit, isLoading, setIsLogin}){

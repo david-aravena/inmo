@@ -2,14 +2,14 @@ import { useState } from "react";
 
 export default function ListImagesSelected({ images, setImages }) {
 
-  const deleteImage = (index) => {
-    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  const deleteImg = () => {
+    setImages(null)
   }
 
   return (
     <div style={{ display: "flex", width: "100%", overflow: "auto", margin: "auto" }}>
       {images?.map((image, index) => (
-        <ImageCard key={index} image={image} deleteImage={deleteImage} />
+        <ImageCard key={index} image={image} deleteImage={deleteImg} />
       ))}
     </div>
   );
@@ -19,7 +19,7 @@ function ImageCard({ image, deleteImage, key }) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div style={{ position: "relative", display: "inline-block", margin: "10px" }}>
+    <div style={{ position: "relative" }}>
       <img
         src={image.objectUrl}
         alt={image.name || "Imagen seleccionada"}
@@ -33,6 +33,7 @@ function ImageCard({ image, deleteImage, key }) {
       >
         Opciones
       </button>
+
       {showMenu && (
         <div
           style={{
@@ -43,12 +44,11 @@ function ImageCard({ image, deleteImage, key }) {
             border: "1px solid #ccc",
             boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
             borderRadius: "5px",
-            padding: "10px",
             zIndex: 10,
           }}
         >
           <button style={{ display: "block", width: "100%", padding: "5px" }}>Editar</button>
-          <button style={{ display: "block", width: "100%", padding: "5px", marginTop: "5px" }} onClick={() => deleteImage(key)}>Eliminar</button>
+          <button style={{ display: "block", width: "100%", padding: "5px", marginTop: "5px" }} onClick={() => deleteImage(null)}>Eliminar</button>
         </div>
       )}
     </div>

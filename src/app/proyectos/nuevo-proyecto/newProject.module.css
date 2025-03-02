@@ -1,5 +1,5 @@
 .newProjectContainer{
-  width:75%;
+  width: auto;
   height:75%;
   border-radius:8px;
   overflow: auto;
@@ -7,14 +7,16 @@
 
 .linksSectionsContainer{
   width:100%;
+  margin-bottom: 1rem;
 }
 
 .listProjectsContainer{
-  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   overflow-x: auto;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
 }
 
 .formContainer{
@@ -27,19 +29,18 @@
 }
 
 .imageFormContainer{
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--background-gray);
 }
 
 .imageContainer{
-  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   position: relative;
+  padding: 1rem;
 }
 
 @media (max-width: 1000px) {
@@ -48,6 +49,7 @@
     flex-direction: column;
     align-items: center;
     overflow-x: none;
+    width: 100%;
   }
 
   .newProjectContainer{
@@ -68,6 +70,6 @@
   }
 
   .imageContainer{
-
+    
   }
 }

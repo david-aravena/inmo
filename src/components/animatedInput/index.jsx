@@ -9,7 +9,8 @@ export default function AnimatedInput({
     onChange = null,
     index,
     type = "text",
-    options = null
+    options = null,
+    state = false
 }) {
     const animationInput = useAnimationInput();
 
@@ -57,14 +58,30 @@ export default function AnimatedInput({
             {type === "date" && (
                 <>
                     <label htmlFor={nameInput} className={styles.labelBlur}>{textInput}</label>
-                    <input type="date" id={nameInput} name={nameInput} className={styles.textInput} onChange={handleChange} />
+                    <input 
+                        type="date" 
+                        id={nameInput} 
+                        name={nameInput} 
+                        className={`${styles.textInput} ${animationInput.inputFocus && styles.textInputBlur}`}
+                        onFocus={() => animationInput.focusAnimation()}
+                        onBlur={(e) => animationInput.blurAnimation(e)} onChange={handleChange} 
+                    />
                 </>
             )}
 
             {type === "textarea" && (
                 <>
                     <label htmlFor={nameInput} className={styles.labelBlur}>{textInput}</label>
-                    <textarea id={nameInput} name={nameInput} rows="4" cols="50" className={styles.textInput} onChange={handleChange} />
+                    <textarea 
+                        id={nameInput} 
+                        name={nameInput} 
+                        rows="4" 
+                        cols="50" 
+                        className={`${styles.textInput} ${animationInput.inputFocus && styles.textInputBlur}`}
+                        onFocus={() => animationInput.focusAnimation()}
+                        onBlur={(e) => animationInput.blurAnimation(e)} 
+                        onChange={handleChange} 
+                    />
                 </>
             )}
 

@@ -31,6 +31,11 @@ export default function Projects(){
                     <div className={styles.linksSectionsContainer}>
                         <Link href={`/proyectos/nuevo-proyecto/`}>
                             <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
+                                Proyectos
+                            </button>
+                        </Link>
+                        <Link href={`/proyectos/nuevo-proyecto/`}>
+                            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
                                 Crear proyecto
                             </button>
                         </Link>

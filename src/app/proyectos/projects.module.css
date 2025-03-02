@@ -7,13 +7,12 @@
 }
 
 .projectsContainer{
-  width:75%;
+  width:auto;
   height:75%;
   border-radius:8px;
   display:flex;
   flex-direction:column;
   overflow: auto;
-  border: 1px solid var(--input-border);
 }
 
 .linksSectionsContainer{

@@ -1,8 +1,8 @@
 "use client"
 import {useState} from 'react'
 
-export const useAnimationInput = () => {
-    const [inputFocus, setInputFocus] = useState(false)
+export const useAnimationInput = (state) => {
+    const [inputFocus, setInputFocus] = useState(state)
 
     const blurAnimation = (e) => {
         if(e.target.value === ""){
