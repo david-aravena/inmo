@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
+import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
 import {saveNewProject} from "src/utils/saveNewProject/"
 import { useRouter } from "next/navigation";
@@ -61,34 +62,38 @@ export default function NewProject(){
   return(
     <div style={{width:"100%", height:"100%", display:"flex", justifyContent: "center", alignItems: "center"}}>
       <div className={`${styles.newProjectContainer} newProjectContainer`}>
-
-          <div className={styles.formContainer}>
-            <form className={styles.form} ref={formRef}>
-                <AnimatedInput nameInput="nombre" type="text" textInput="Nombre" />
-                <AnimatedInput nameInput="direccion" type="text" textInput="Dirección" />
-                <div style={{width:"100%", display:"flex", flexDirection:"column"}}>
-                  <AnimatedInput nameInput="fechaInicio" type="date" textInput="Fecha inicio" />
-                  <AnimatedInput nameInput="fechaFin" type="date" textInput="Fecha termino" />
-                </div>
-                <AnimatedInput nameInput="descripcion" type="textarea" textInput="Descripción" />
-            </form>
-            <div style={{display:"flex", justifyContent:"flex-end", width:"100%", paddingRight:"2rem"}}>
-              <button onClick={() => scrollToEnd()}>paso 2</button>
+          <div className={styles.linksSectionsContainer}>
+            <Link href={`/proyectos/nuevo-proyecto/`}>
+                <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
+                    Crear proyecto
+                </button>
+            </Link>
+          </div>
+          <div className={styles.listProjectsContainer}>
+            <div className={styles.formContainer}>
+              <form className={styles.form} ref={formRef}>
+                  <AnimatedInput nameInput="nombre" type="text" textInput="Nombre" />
+                  <AnimatedInput nameInput="direccion" type="text" textInput="Dirección" />
+                  <div style={{width:"100%", display:"flex", flexDirection:"column"}}>
+                    <AnimatedInput nameInput="fechaInicio" type="date" textInput="Fecha inicio" />
+                    <AnimatedInput nameInput="fechaFin" type="date" textInput="Fecha termino" />
+                  </div>
+                  <AnimatedInput nameInput="descripcion" type="textarea" textInput="Descripción" />
+              </form>
+            </div>
+            
+            <div className={styles.imageFormContainer}>
+              <div className={styles.imageContainer}>
+                <input type="file" onChange={(e) => handleImageChange(e)} />
+                {imageSelected && (
+                  <ImageEditor images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} />
+                )}
+              </div>
             </div>
           </div>
-          
-          <div className={styles.imageFormContainer}>
-            <div className={styles.imageContainer}>
-              <input type="file" onChange={(e) => handleImageChange(e)} />
-              {imageSelected && (
-                <ImageEditor images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} />
-              )}
-            </div>
-            <div style={{display:"flex", justifyContent:"space-around", width:"100%", paddingRight:"2rem"}}>
-              <button onClick={() => scrollToStart()}>paso 1</button>
+          <div style={{display:"flex", justifyContent:"flex-end", width:"100%"}}>
               <button onClick={() => onSubmit()}>Crear proyecto</button>
             </div>
-          </div>
       </div>
     </div>
   )
