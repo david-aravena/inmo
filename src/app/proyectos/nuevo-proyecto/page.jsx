@@ -10,7 +10,7 @@ import styles from './newProject.module.css'
 
 export default function NewProject() {
   const [imageSelected, setImageSelected] = useState([]);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);  // Estado para controlar si el botón está habilitado
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { currentUser } = useAuth();
   const router = useRouter();
   const formRef = useRef(null);
@@ -72,14 +72,14 @@ export default function NewProject() {
               </div>
               <AnimatedInput nameInput="descripcion" type="textarea" textInput="Descripción" state={true} />
             </form>
-            <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-              <button onClick={() => onSubmit()} disabled={isButtonDisabled}>Crear proyecto</button>
+            <div className={styles.buttonCreateProjectContainer}>
+              <button onClick={() => onSubmit()} disabled={false} className={styles.buttonCreateProject}>Crear proyecto</button>
             </div>
           </div>
 
           <div className={styles.imageFormContainer}>
             <div className={styles.imageContainer}>
-              <input type="file" onChange={(e) => handleImageChange(e)} />
+              <input type="file" onChange={(e) => handleImageChange(e)} className={styles.inputFile} />
               {imageSelected ?
                 <ImageEditor images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} setImages={() => setImageSelected} />
                 :
@@ -87,7 +87,11 @@ export default function NewProject() {
               }
             </div>
           </div>
+          <div className={styles.buttonCreateProjectContainerMobile}>
+            <button onClick={() => onSubmit()} disabled={false} className={styles.buttonCreateProject}>Crear proyecto</button>
+          </div>
         </div>
+        
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 .newProjectContainer{
-  height:75%;
+  min-height:75%;
   border-radius:8px;
   overflow: auto;
 }

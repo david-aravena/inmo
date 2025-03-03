@@ -78,7 +78,7 @@ export default function NewProperty(){
 
         <div className={styles.listProjectsContainer}>
           <div className={styles.formContainer}>
-            <form className={styles.form} ref={formRef}>  
+            <form className={styles.form} ref={formRef}>
               <AnimatedInput nameInput="precioPesos" textInput="Valor" type="number" />
               <AnimatedInput nameInput="direccion" textInput="Direccion" type="text" />
               <AnimatedInput nameInput="tipoInmueble" textInput="Tipo" type="select" options={["casa", "departamento", "terreno", "oficina"]} />
@@ -106,18 +106,8 @@ export default function NewProperty(){
         </div>
 
 
+
         
-
-
-
-
-
-
-
-
-
-
-
 
       </div>
     </div>
