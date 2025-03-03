@@ -4,13 +4,10 @@ import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
 import { saveNewProject } from "src/utils/saveNewProject/"
 import { useRouter } from "next/navigation";
-import ImageEditor from 'src/components/ListImagesSelected'
 import { useAuth } from "src/context/auth";
 import styles from './newProject.module.css'
 
 export default function NewProject() {
-  const [imageSelected, setImageSelected] = useState([]);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { currentUser } = useAuth();
   const router = useRouter();
   const formRef = useRef(null);
@@ -25,25 +22,12 @@ export default function NewProject() {
     saveNewProject({ ...dataObj, id: 0, usuarioId: parseInt(currentUser.id, 10) }, currentUser.token);
   }
 
-  const handleImageChange = (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      setImageSelected([{ objectUrl: URL.createObjectURL(file) }]);
-    }
-  };
-
   useEffect(() => {
     if (!currentUser) {
       router.push("/autenticacion");
     }
 
-    // Verificar si el formulario está completo y si hay una imagen seleccionada
-    if (formRef.current) {
-      const formData = new FormData(formRef.current);
-      const isFormComplete = Array.from(formData.values()).every(value => value !== "");
-      setIsButtonDisabled(!(isFormComplete && imageSelected.length > 0)); // Habilitar o deshabilitar el botón
-    }
-  }, [router, imageSelected]); // Se ejecuta cada vez que cambia la imagen seleccionada
+  }, [router]);
 
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -75,20 +59,6 @@ export default function NewProject() {
             <div className={styles.buttonCreateProjectContainer}>
               <button onClick={() => onSubmit()} disabled={false} className={styles.buttonCreateProject}>Crear proyecto</button>
             </div>
-          </div>
-
-          <div className={styles.imageFormContainer}>
-            <div className={styles.imageContainer}>
-              <input type="file" onChange={(e) => handleImageChange(e)} className={styles.inputFile} />
-              {imageSelected ?
-                <ImageEditor images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} setImages={() => setImageSelected} />
-                :
-                <h2 style={{ color: "white" }}>hola</h2>
-              }
-            </div>
-          </div>
-          <div className={styles.buttonCreateProjectContainerMobile}>
-            <button onClick={() => onSubmit()} disabled={false} className={styles.buttonCreateProject}>Crear proyecto</button>
           </div>
         </div>
         

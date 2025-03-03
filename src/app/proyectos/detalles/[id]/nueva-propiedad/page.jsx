@@ -3,17 +3,11 @@ import { useState, useEffect, useRef } from 'react';
 import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
 import { useRouter, useParams } from "next/navigation";
-import ListImagesSelected from 'src/components/ListImagesSelected'
 import {saveNewProperty} from 'src/utils/saveProperty/'
 import { useAuth } from "src/context/auth";
 import styles from './newProperty.module.css'
 
 export default function NewProperty(){
-
-  const [images, setImages] = useState([]);
-  const [imageSelected, setImageSelected] = useState([]);
-
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);  // Estado para controlar si el botón está habilitado
 
   const { currentUser } = useAuth();
   const {id} = useParams();
@@ -37,17 +31,6 @@ export default function NewProperty(){
     saveNewProperty({...dataObj, id:0, latitud:"9032983289", longitud:"9803289238932", precioUF:100.20, cuentaPiscina:true, cuentaBodega: false, cuentaGimnasio:false ,ProyectoId: parseInt(id, 10) ,images: images.map(({ objectUrl, ...rest }) => rest)}, currentUser.token);
   }
 
-  const handleImageChange = (e) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      const newImages = Array.from(files).map((file) => ({
-        file: file,
-        objectUrl: URL.createObjectURL(file),
-      }));
-  
-      setImages((prevImages) => [...prevImages, ...newImages]);
-    }
-  };
 
   useEffect(() => {
     if (!currentUser) {
@@ -89,18 +72,7 @@ export default function NewProperty(){
               <AnimatedInput nameInput="cantidadEstacionamiento" textInput="Estacionamiento" type="number" />
             </form>
             <div style={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-              <button onClick={() => onSubmit()} disabled={isButtonDisabled}>Crear proyecto</button>
-            </div>
-          </div>
-
-          <div className={styles.imageFormContainer}>
-            <div className={styles.imageContainer}>
-              <input type="file" onChange={(e) => handleImageChange(e)} />
-              {imageSelected ?
-                <ListImagesSelected images={imageSelected} width={400} height={500} onSaveImage={setImageSelected} setImages={() => setImageSelected} />
-                :
-                <h2 style={{ color: "white" }}>hola</h2>
-              }
+              <button onClick={() => onSubmit()}>Crear proyecto</button>
             </div>
           </div>
         </div>
