@@ -12,6 +12,7 @@
   box-shadow: 0px 8px 8px 0px rgba(30, 30, 30, 0.15);
   position: relative; /* Para controlar los elementos con respecto al contenedor */
   overflow: hidden;  /* Oculta la información que se despliega fuera de la card */
+  flex: 0 0 auto;
 }
 
 @media (max-width: 700px) { /* Ajusta este tamaño según lo necesites */

@@ -1,3 +1,6 @@
+import {getItems} from "src/utils/getItems/"
+import {getSocialPosts} from 'src/utils/social/'
+
 export const getUser = async(name) => {
     const users = [
         {
@@ -38,7 +41,8 @@ export const getUser = async(name) => {
         }
     ]
     
-
     const user = users.find(user => user.name === name);
-    return user || null;
+    const propertiesUser = await getItems()
+    const publicationsUser = await getSocialPosts()
+    return {user, propertiesUser, publicationsUser} || null;
 }
