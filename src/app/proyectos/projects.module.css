@@ -2,23 +2,26 @@
   width:100%;
   height:100%;
   display:flex;
+  flex-direction: column;
   justify-content:center; 
   align-items:center;
 }
 
 .projectsContainer{
   height: 75%;
-  width:auto;
-  border-radius:8px;
-  display:flex;
-  flex-direction:column;
+  width: auto;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .linksSectionsContainer{
   width:100%;
+  display: flex;
 }
 
 .listProjectsContainer{
+  width:100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -27,9 +30,6 @@
 
 @media(max-width: 900px){
 
-  .projectsContainer{
-    width:100%;
-    height: 90%;
-  }
+
 
 }

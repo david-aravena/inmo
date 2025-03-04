@@ -8,6 +8,7 @@
 
 .panelContainer{
   width: 400px;
+  height: 75%;
   border-radius:8px;
   display:flex;
   flex-direction:column;

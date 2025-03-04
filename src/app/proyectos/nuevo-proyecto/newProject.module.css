@@ -1,12 +1,9 @@
 .newProjectContainer{
-  width: auto;
   height:75%;
   border-radius:8px;
-  overflow: auto;
 }
 
 .linksSectionsContainer{
-  width:100%;
   margin-bottom: 1rem;
 }
 
@@ -76,8 +73,7 @@
   }
 
   .newProjectContainer{
-    width: 100%;
-    height: 100%;
+    height: 75%;
   }
 
   .formContainer{

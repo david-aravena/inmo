@@ -25,10 +25,11 @@ export default function Projects(){
     }, [router]);
 
     return(
-        <>
+        <> 
             <div className={styles.projects}>
                 <div className={styles.projectsContainer}>
-                    <div className={styles.linksSectionsContainer}>
+                    
+                <div className={styles.linksSectionsContainer}>
                         <Link href={`/proyectos/nuevo-proyecto/`}>
                             <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
                                 Proyectos
@@ -40,7 +41,6 @@ export default function Projects(){
                             </button>
                         </Link>
                     </div>
-
                     <div className={styles.listProjectsContainer}>
                         {projects.length ? 
                             <>
@@ -66,7 +66,7 @@ export default function Projects(){
                                 ))}
                             </>
                         :
-                            <h2 style={{color:"white"}}>No hay proyectos guardados</h2>
+                            <img src="/images/inmobiliarioLogo.png" alt="" />
                         }
                     </div>
                 </div>

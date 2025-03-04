@@ -131,6 +131,7 @@ export default function CardSocialUI({ item, index }) {
               width: "100%",
               userSelect: "none",
             }}
+            loading="lazy"
           />
         ))}
       </div>
