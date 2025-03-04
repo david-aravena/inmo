@@ -1,5 +1,5 @@
 .newProjectContainer{
-  min-height:75%;
+  height:75%;
   border-radius:8px;
   overflow: auto;
 }
@@ -7,6 +7,7 @@
 .linksSectionsContainer{
   width:100%;
   margin-bottom: 1rem;
+  display: flex;
 }
 
 .listProjectsContainer{
