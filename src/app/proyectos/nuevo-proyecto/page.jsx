@@ -2,15 +2,24 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
+import SelectImages from 'src/components/selectImages'
 import { saveNewProject } from "src/utils/saveNewProject/"
 import { useRouter } from "next/navigation";
 import { useAuth } from "src/context/auth";
 import styles from './newProject.module.css'
 
 export default function NewProject() {
+  const [image, setImage] = useState(null)
   const { currentUser } = useAuth();
   const router = useRouter();
   const formRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setImage({ file: file, objectUrl: URL.createObjectURL(file) });
+  };
 
   const onSubmit = () => {
     if (!formRef.current) return {};
@@ -56,7 +65,19 @@ export default function NewProject() {
               </div>
               <AnimatedInput nameInput="descripcion" type="textarea" textInput="Descripción" state={true} />
             </form>
+            <div className={styles.imageContainer}>
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                style={{ display: "none" }} 
+                onChange={handleImage} 
+              />
+              {image && (
+                <SelectImages images={[image]} />
+              )}
+            </div>
             <div className={styles.buttonCreateProjectContainer}>
+              <button style={{background:"#3980ff", border:"none", color:"white", padding:"8px 0", margin:"1rem 0"}} onClick={() => fileInputRef.current?.click()}>Asignar imagen</button>
               <button onClick={() => onSubmit()} disabled={false} className={styles.buttonCreateProject}>Crear proyecto</button>
             </div>
           </div>

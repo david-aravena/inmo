@@ -17,6 +17,11 @@
   background-color: rgb(19, 19, 19);
 }
 
+.buttonCreateProjectContainer{
+  display: flex;
+  flex-direction: column;
+}
+
 .formContainer{
   position:relative;
 }
@@ -97,7 +102,7 @@
   }
 
   .buttonCreateProjectContainer{
-    display: none;
+   
   }
 
   .buttonCreateProjectContainerMobile{
