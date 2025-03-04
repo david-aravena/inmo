@@ -42,21 +42,28 @@ export default function NewProperty(){
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <div className={`${styles.newProjectContainer} newProjectContainer`}>
         <div className={styles.linksSectionsContainer}>
+        <div className={styles.linksSectionsContainer}>
           <Link href={`/proyectos/`}>
             <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
                 Proyectos
             </button>
           </Link>
-          <Link href={`/proyectos/detalles/1`}>
+          <Link href={`/proyectos/detalles/${id}`}>
             <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
                 Proyecto
             </button>
           </Link>
-          <Link href="/proyectos/nueva-propiedad">
-            <button style={{padding: "1rem", background:"#992264", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
+          <Link href={`/proyectos/detalles/${id}/propiedades`}>
+            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
               Propiedades
             </button>
           </Link>
+          <Link href={`/proyectos/detalles/${id}/nueva-propiedad`}>
+            <button style={{padding: "1rem", background:"#992264", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
+              Nueva propiedad
+            </button>
+          </Link>
+        </div>
         </div>
 
         <div className={styles.listProjectsContainer}>

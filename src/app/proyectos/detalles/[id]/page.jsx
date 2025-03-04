@@ -62,7 +62,7 @@ export default function DetailsProject(){
                 Proyecto
             </button>
           </Link>
-          <Link href={`/proyectos/detalles/${id}/nueva-propiedad`}>
+          <Link href={`/proyectos/detalles/${id}/propiedades`}>
             <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
               Propiedades
             </button>
