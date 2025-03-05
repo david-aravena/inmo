@@ -18,18 +18,20 @@ export default function NewProject() {
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    setImage({ file: file, objectUrl: URL.createObjectURL(file) });
+    setImage(file);
   };
 
   const onSubmit = () => {
     if (!formRef.current) return {};
+  
     const formData = new FormData(formRef.current);
-    const dataObj = { regionId: 1, comunaId: 2, estadoProyecto: "Abierto", latitud: null, longitud: null, vigente: true, empresaId: 2 };
-    for (let [key, value] of formData.entries()) {
-      dataObj[key] = value;
+    const obj = {image: image}
+    for (const [key, value] of formData.entries()) {
+      obj[`${key}`] =  value;
     }
-    saveNewProject({ ...dataObj, id: 0, usuarioId: parseInt(currentUser.id, 10) }, currentUser.token);
-  }
+    console.log(obj)
+  };
+
 
   useEffect(() => {
     if (!currentUser) {
@@ -73,7 +75,7 @@ export default function NewProject() {
                 onChange={handleImage} 
               />
               {image && (
-                <SelectImages images={[image]} />
+                <SelectImages images={[image]} setImage={(image) => setImage(image)} />
               )}
             </div>
             <div className={styles.buttonCreateProjectContainer}>

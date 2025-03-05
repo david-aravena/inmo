@@ -1,75 +1,116 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import html2canvas from "html2canvas";
 
-export default function SelectImages({images}){
+export default function SelectImages({ images, setImage }) {
+  const captureRef = useRef(null);
+  const containerRef = useRef(null);
+  const [capturedImage, setCapturedImage] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
+  const [currentTranslateX, setCurrentTranslateX] = useState(0);
 
-  const [imageSelected, setImageSelected] = useState(null);
+  useEffect(() => {
+    if(capturedImage){
+      setImage(capturedImage)
+    }
+  },[capturedImage])
 
-  return(
-    <div style={{width:"400px", height:"500px", overflow:"hidden"}}>
-      {images.map((image) => (
-        <img src={image.objectUrl} alt="" height={"100%"} onClick={() => setImageSelected(image)} />
-      ))}
-
-      {imageSelected && <ImageCropper imageSelected={imageSelected} />}
-    </div>
-  )
-}
-
-
-function ImageCropper({imageSelected}) {
-  const [image, setImage] = useState(imageSelected);
-  const canvasRef = useRef(null);
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
+  const handleCapture = async () => {
+    if (captureRef.current) {
+      const canvas = await html2canvas(captureRef.current);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const file = new File([blob], "captured-image.png", { type: "image/png" });
+          setCapturedImage(file);
+        }
+      }, "image/png");
+      setStartX(0);
+      setTranslateX(0);
+      setCurrentTranslateX(0);
     }
   };
 
-  useEffect(() => {
-    if (!image) return;
 
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+  };
 
-    const img = new Image();
-    img.src = image;
-    img.onload = () => {
-      // Redibujar la imagen en el canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, 400, 500);
-    };
-  }, [image]);
+  // Iniciar el arrastre con touch
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX);
+  };
 
-  const handleDownload = () => {
-    const canvas = canvasRef.current;
-    const link = document.createElement("a");
-    link.download = "cropped-image.png";
-    link.href = canvas.toDataURL();
-    link.click();
+  // Mover el contenedor con el mouse
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - startX;
+    setTranslateX(currentTranslateX + deltaX);
+  };
+
+  // Mover el contenedor con touch
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const deltaX = e.touches[0].clientX - startX;
+    setTranslateX(currentTranslateX + deltaX);
+  };
+
+  // Finalizar el arrastre con el mouse
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    setCurrentTranslateX(translateX);
+  };
+
+  // Finalizar el arrastre con touch
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    setCurrentTranslateX(translateX);
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <input type="file" onChange={handleFileChange} accept="image/*" />
+    <div>
+      <button onClick={handleCapture}>Capturar</button>
       <div
         style={{
           width: "400px",
           height: "500px",
           overflow: "hidden",
-          border: "2px solid black",
-          margin: "20px auto",
+          position: "relative",
+          border: "1px solid black",
         }}
+        ref={captureRef}
       >
-        {image && <img src={image} alt="preview" style={{ width: "100%" }} />}
+        <div
+          ref={containerRef}
+          style={{
+            width:"100%",
+            height:"100%",
+            display: "flex",
+            transform: `translateX(${translateX}px)`,
+            transition: isDragging ? "none" : "transform 0.2s ease-out",
+            cursor: isDragging ? "grabbing" : "grab",
+          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {images.map((image) => (
+            <img
+              src={capturedImage ? URL.createObjectURL(capturedImage) : URL.createObjectURL(image)}
+              alt=""
+              height="100%"
+              style={{ userSelect: "none" }}
+              draggable="false"
+            />
+          ))}
+        </div>
       </div>
-      <canvas ref={canvasRef} width="400" height="500" style={{ display: "none" }} />
-      {image && <button onClick={handleDownload}>Descargar Imagen</button>}
     </div>
   );
 }
