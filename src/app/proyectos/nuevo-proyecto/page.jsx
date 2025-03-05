@@ -25,11 +25,11 @@ export default function NewProject() {
     if (!formRef.current) return {};
   
     const formData = new FormData(formRef.current);
-    const obj = {image: image}
+    const obj = {image: image, id:0}
     for (const [key, value] of formData.entries()) {
       obj[`${key}`] =  value;
     }
-    console.log(obj)
+    saveNewProject(obj, currentUser.token)
   };
 
 
