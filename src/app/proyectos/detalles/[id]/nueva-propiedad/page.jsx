@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
-import Link from "next/link";
+import Links from 'src/components/links/'
 import AnimatedInput from 'src/components/animatedInput'
 import { useRouter, useParams } from "next/navigation";
 import {saveNewProperty} from 'src/utils/saveProperty/'
@@ -38,31 +38,20 @@ export default function NewProperty(){
     }
   }, [router]);
 
+  const links = [
+    {text: "Proyectos", href:"/proyectos/"},
+    {text: "Proyecto", href:`/proyectos/detalles/${id}`},
+    {text: "Propiedades", href:`/proyectos/detalles/${id}/propiedades`},
+    {text: "Crear propiedades", href:`#`}
+  ]
+
   return(
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <div className={`${styles.newProjectContainer} newProjectContainer`}>
-      <div className={styles.linksSectionsContainer}>
-          <Link href={`/proyectos/`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-                Proyectos
-            </button>
-          </Link>
-          <Link href={`/proyectos/detalles/${id}`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-                Proyecto
-            </button>
-          </Link>
-          <Link href={`/proyectos/detalles/${id}/propiedades`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-              Propiedades
-            </button>
-          </Link>
-          <Link href={`/proyectos/detalles/${id}/nueva-propiedad`}>
-            <button style={{padding: "1rem", background:"#992264", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-              Nueva propiedad
-            </button>
-          </Link>
+        <div style={{width:"100%"}}>
+          <Links styles={styles} data={links} />
         </div>
+
         <div className={styles.listProjectsContainer}>
         
           <div className={styles.formContainer}>

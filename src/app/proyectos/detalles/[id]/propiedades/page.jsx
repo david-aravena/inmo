@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Links from 'src/components/links/'
 import { useEffect } from 'react';
 import {getProperties} from 'src/utils/getPropertiesProject/'
 import styles from './properties.module.css'
@@ -16,30 +17,18 @@ export default function ListProperties(){
     })
   }, [])
 
+  const links = [
+    {text: "Proyectos", href:"/proyectos/"},
+    {text: "Proyecto", href:`/proyectos/detalles/${id}`},
+    {text: "Propiedades", href:`#`},
+    {text: "Crear propiedades", href:`/proyectos/detalles/${id}/nueva-propiedad`}
+  ]
+
   return(
     <div className={styles.panel}>
       <div className={styles.panelContainer}>
-        <div className={styles.linksSectionsContainer}>
-          <Link href={`/proyectos/`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-                Proyectos
-            </button>
-          </Link>
-          <Link href={`/proyectos/detalles/${id}`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-                Proyecto
-            </button>
-          </Link>
-          <Link href={`#`}>
-            <button style={{padding: "1rem", background:"#992264", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-              Propiedades
-            </button>
-          </Link>
-          <Link href={`/proyectos/detalles/${id}/nueva-propiedad`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-              Nueva propiedad
-            </button>
-          </Link>
+        <div style={{width:"100%"}}>
+          <Links styles={styles} data={links} />
         </div>
 
         <div className={styles.listProjectsContainer}>

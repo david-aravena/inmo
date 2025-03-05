@@ -2,7 +2,8 @@
 import Link from "next/link";
 import {useState, useRef, useEffect} from "react"
 import { useParams, useRouter } from "next/navigation";
-import AnimatedInput from "src/components/animatedInput"
+import AnimatedInput from "src/components/animatedInput";
+import Links from 'src/components/links/'
 import {saveNewProperty} from 'src/utils/saveProperty/'
 import { useAuth } from "src/context/auth";
 import styles from './detailsProject.module.css'
@@ -46,27 +47,19 @@ export default function DetailsProject(){
       setProject(project);
     }
   }, [router]);
+
+  const links = [
+    {text: "Proyectos", href:"/proyectos/"},
+    {text: "Proyecto", href:"#"},
+    {text: "Propiedades", href:`/proyectos/detalles/${id}/propiedades`},
+  ]
   
 
   return(
     <div className={styles.panel}>
       <div className={styles.panelContainer}>
-        <div className={styles.linksSectionsContainer}>
-          <Link href={`/proyectos/`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-                Proyectos
-            </button>
-          </Link>
-          <Link href={`/proyectos/nuevo-proyecto/`}>
-            <button style={{padding: "1rem", background:"#992264", color:"white", border:"1px solid var(--input-border)", borderLeft:"none", borderRight:"none", flex:"1", cursor: "pointer"}}>
-                Proyecto
-            </button>
-          </Link>
-          <Link href={`/proyectos/detalles/${id}/propiedades`}>
-            <button style={{padding: "1rem", background:"none", color:"white", border:"none", flex:"1", cursor: "pointer"}}>
-              Propiedades
-            </button>
-          </Link>
+        <div style={{width:"100%"}}>
+          <Links styles={styles} data={links} />
         </div>
 
         <div className={styles.dataContainer}>

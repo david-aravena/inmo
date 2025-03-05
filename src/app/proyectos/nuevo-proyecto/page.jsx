@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
-import Link from "next/link";
 import AnimatedInput from 'src/components/animatedInput'
 import SelectImages from 'src/components/selectImages'
+import Links from 'src/components/links/'
 import { saveNewProject } from "src/utils/saveNewProject/"
 import { useRouter } from "next/navigation";
 import { useAuth } from "src/context/auth";
@@ -40,22 +40,18 @@ export default function NewProject() {
 
   }, [router]);
 
+  const links = [
+    {text:"Proyectos",href:`/proyectos/`},
+    {text:"Crear proyecto",href:`#`}
+  ]
+
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <div className={`${styles.newProjectContainer} newProjectContainer`}>
-        <div className={styles.linksSectionsContainer}>
-          <Link href={`/proyectos/`}>
-            <button style={{ padding: "1rem", background: "none", color: "white", border: "none", flex: "1", cursor: "pointer" }}>
-              Proyectos
-            </button>
-          </Link>
-          <Link href={`/proyectos/nuevo-proyecto/`}>
-            <button style={{ padding: "1rem", background: "#992264", color: "white", border: "1px solid var(--input-border)", borderLeft: "none", borderRight: "none", flex: "1", cursor: "pointer" }}>
-              Crear proyecto
-            </button>
-          </Link>
+        <div style={{width:"100%"}}>
+          <Links styles={styles} data={links} />
         </div>
-        
+
         <div className={styles.listProjectsContainer}>
           <div className={styles.formContainer}>
             <form className={styles.form} ref={formRef}>
